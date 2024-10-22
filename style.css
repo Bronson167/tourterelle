@@ -15,6 +15,10 @@ html {
     scroll-behavior: smooth;
 }
 
+.desc-min {
+    display: none;
+}
+
 .no {
     font-size: 20px;
     font-weight: 500;
@@ -1765,8 +1769,10 @@ strong {
     }
 
     .navbar-light .navbar-toggler-icon {
+        margin-top: 5px;
         margin-right: 5px;
     }
+
 
     /*-------navbar-----------*/
 
@@ -2165,6 +2171,27 @@ strong {
     .admission .content-admission ul {
         margin-top: 30px;
         margin-left: 5px;
+    }
+
+
+
+    .desc-min {
+        display: block;
+        text-align: justify;
+    }
+
+    .desc-min strong {
+        margin-left: 5px;
+        font-size: 14px;
+        margin-bottom: 60px;
+    }
+
+    .desc-min em {
+        font-size: 14px;
+    }
+
+    .description {
+        display: none;
     }
 
 }

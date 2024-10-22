@@ -1041,7 +1041,6 @@ strong {
         max-height: 800px;
         min-height: 260px;
         margin-bottom: 20px;
-        text-align: justify;
     }
 
     .actualite .bottom .card .card-body h5.card-title.act {
@@ -1763,22 +1762,23 @@ strong {
 
     /*_______home-------------*/
     .home {
-        height: 70vh;
+        height: 80vh;
         color: white;
     }
 
     .home .caption p {
         font-size: 15px;
-        margin: 0px 0 10px;
+        margin: 0px 0 0px;
     }
 
     .home .caption {
         width: 100%;
+        margin-left: 10px;
     }
 
 
     .home .caption h1 {
-        font-size: 25px;
+        font-size: 22px;
         margin: 0;
         margin-bottom: 5px;
     }
@@ -1848,7 +1848,7 @@ strong {
 
     .actualite .bottom .card img {
         max-width: 400px;
-        min-width: 100%;
+        min-width: 400px;
         max-height: 250px;
         transition: 0.5s;
         height: 100%;
@@ -1880,7 +1880,7 @@ strong {
     }
 
     .Contact-Form {
-        height: 50vh;
+        height: 80vh;
         width: 100%;
         padding-left: 20px;
         text-align: center;

@@ -2162,9 +2162,8 @@ strong {
         margin-top: 20px;
     }
 
-    .publier .content-admission .piece ul {
-        margin-left: 0px;
-        color: red;
+    .admission .content-admission ul {
+        margin-top: 30px;
         margin-left: 10px;
     }
 

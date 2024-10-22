@@ -2176,8 +2176,13 @@ strong {
 
 
     .desc-min {
+        font-size: 14px;
         display: block;
         text-align: justify;
+    }
+
+    p {
+        font-size: 14px;
     }
 
     .desc-min strong {
@@ -2199,7 +2204,9 @@ strong {
         padding: 20px 20px;
     }
 
-
+    .article-title-menu {
+        display: none;
+    }
 
 }
 

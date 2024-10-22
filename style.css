@@ -520,36 +520,38 @@ body {
 .content-about {
     width: 100%;
     height: 100%;
-    display: flex;
-    position: relative;
     background-color: rgb(210, 204, 204);
-    color: green;
+    color: black;
 }
 
 .content-about .right {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    color: black;
+
+    font-size: 17px;
+    margin-top: 10px;
 }
 
 .right {
-    width: 60%;
-    padding: 5vw 3vw;
+    width: 100%;
+    padding: 20px;
 }
 
 .right h1 {
-    font-size: 4vw;
+    color: green;
+    font-size: 25px;
     line-height: 4.4vw;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 
 .right p {
-    font-size: 1.2vw;
+    font-size: 17px;
     font-weight: 600;
     color: black;
-    width: 80%;
-    margin-top: 2vw;
-    margin-bottom: 0vw;
+    width: 100%;
+    margin-top: 1vw;
+    margin-bottom: 10px;
     text-align: justify;
     line-height: 25px;
 }
@@ -780,32 +782,40 @@ body {
     }
 
 
-
     .content-about .right {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
+        color: black;
+
+        font-size: 17px;
+        margin-top: 10px;
     }
 
     .right {
-        width: 60%;
-        padding: 3vw 1vw;
+        width: 100%;
+        padding: 20px;
     }
 
     .right h1 {
-        font-size: 3vw;
-        line-height: 1vw;
+        color: green;
+        font-size: 25px;
+        line-height: 4.4vw;
+        margin-top: 20px;
+        margin-bottom: 20px;
     }
 
 
     .right p {
-        font-size: 1.2vw;
-        width: 80%;
-        line-height: 15px;
+        font-size: 17px;
+        font-weight: 600;
+        color: black;
+        width: 100%;
+        margin-top: 1vw;
+        margin-bottom: 10px;
+        text-align: justify;
+        line-height: 20px;
     }
 
     .right p.bottom {
-        margin-bottom: 1vw;
+        margin-bottom: 2vw;
     }
 
     .left {
@@ -2003,7 +2013,7 @@ strong {
         font-size: 15px;
         margin-left: 17px;
         margin-bottom: 15px;
-        text-align: justify
+        text-align: justify;
     }
 
     .main-div h5 {
@@ -2049,7 +2059,7 @@ strong {
         width: 100%;
         height: 100%;
         background-color: rgb(210, 204, 204);
-        color: green;
+        color: black;
     }
 
     /* .content-about .right {
@@ -2058,22 +2068,24 @@ strong {
         justify-content: center;
     } */
 
-    .descript {
+    .content-about .right {
         color: black;
-        text-align: justify;
+
         font-size: 17px;
-        margin-top: 420px;
+        margin-top: 10px;
     }
 
     .right {
-        width: 90%;
+        width: 100%;
         padding: 20px;
     }
 
     .right h1 {
-        font-size: 4vw;
+        color: green;
+        font-size: 25px;
         line-height: 4.4vw;
         margin-top: 20px;
+        margin-bottom: 20px;
     }
 
 
@@ -2081,9 +2093,9 @@ strong {
         font-size: 17px;
         font-weight: 600;
         color: black;
-        width: 80%;
+        width: 100%;
         margin-top: 1vw;
-        margin-bottom: 0vw;
+        margin-bottom: 10px;
         text-align: justify;
         line-height: 20px;
     }
@@ -2122,6 +2134,30 @@ strong {
     .icon img:hover {
         /* filter: grayscale(1); */
         filter: blur(0.5px);
+    }
+
+    .mission {
+        margin-top: 70px;
+        padding: 0 50px;
+    }
+
+
+
+    .mission .content-mission ol {
+        margin-top: 30px;
+        margin-left: 10px;
+        text-align: justify;
+    }
+
+    .mission .content-mission ol li h3 {
+        font-size: 18px;
+        margin-bottom: 15px;
+        margin-top: 30px;
+    }
+
+    .publier .content-admission .piece {
+        margin-left: 10px;
+        margin-top: 20px;
     }
 
 }

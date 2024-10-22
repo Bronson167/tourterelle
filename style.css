@@ -1,0 +1,1219 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: 100%;
+    height: 100%;
+    font-family: 'open sans', sans-serif;
+    overflow-x: hidden;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+.no {
+    font-size: 20px;
+    font-weight: 500;
+    display: none;
+}
+
+/*-------navbar-----------*/
+.text-green {
+    font-size: 20px;
+    color: green;
+    margin-right: 120px;
+    font-weight: 900;
+    margin-left: 30px;
+}
+
+.navbar {
+    padding: 15px;
+}
+
+.flex {
+    display: flex;
+    justify-content: space-around;
+}
+
+.nav-item {
+    margin-right: 80px;
+}
+
+.nav-item a.scale {
+    transition: .3s ease;
+    font-size: 18px;
+}
+
+.nav-item a.scale:hover {
+    transform: scale(1.1);
+    font-weight: bold;
+    color: green;
+}
+
+/*-------navbar-----------*/
+/*-------home-----------*/
+.home {
+    height: 90vh;
+    color: white;
+}
+
+.home .slide:nth-child(1),
+.home .slide:nth-child(2),
+.home .slide:nth-child(3) {
+    background-size: cover;
+    background-position: right;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 800px;
+}
+
+.home .slide:nth-child(1) {
+    background-image: url('./images/h1.jpg');
+}
+
+.home .slide:nth-child(2) {
+    background-image: url('./image/h4.jpg');
+}
+
+.home .slide:nth-child(3) {
+    background-image: url('./image/h4.jpg');
+    background-color: #c4e0e5;
+}
+
+.home .slide {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    display: none;
+    animation: slide 2s ease;
+    padding: 0 15px;
+}
+
+.home .slide.active {
+    height: 500px;
+    display: flex;
+    overflow: visible;
+    margin-top: 0px;
+}
+
+@keyframes slide {
+    0% {
+        opacity: 0;
+        transform: scale(1.1);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+}
+
+.container {
+    max-width: 1200px;
+    margin: auto;
+}
+
+.home .container {
+    flex-grow: 1;
+}
+
+.home .caption {
+    width: 50%;
+}
+
+.home .caption p {
+    font-size: 15px;
+    margin: 15px 0 30px;
+    font-size: 20px;
+}
+
+.home .caption h1 {
+    font-size: 45px;
+    margin: 0;
+    font-weight: bold;
+}
+
+.home .slide.active .caption h1 {
+    opacity: 0;
+    animation: captiontext 0.5s forwards;
+    animation-delay: 1s;
+}
+
+.home .slide.active .caption p {
+    opacity: 0;
+    animation: captiontext 0.5s forwards;
+    animation-delay: 1.2s;
+}
+
+.home .slide.active .caption a {
+    opacity: 0;
+    animation: captiontext 0.5s forwards;
+    animation-delay: 1.4s;
+}
+
+@keyframes captiontext {
+    0% {
+        opacity: 0;
+        transform: translateX(-100px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0px);
+    }
+}
+
+.home .caption a {
+    display: inline-block;
+    padding: 12px 80px;
+    border: 1px solid #305ee3;
+    background: #305ee3;
+    color: white;
+    transition: all 300ms ease-in-out;
+    border-radius: 40px;
+}
+
+.home .caption a:hover {
+    background: #ba8b02;
+    color: white;
+    border: none;
+}
+
+.home .control .prev,
+.home .control .next {
+    position: absolute;
+    z-index: 2;
+    top: 50%;
+    width: 40px;
+    height: 40px;
+    margin-top: -20px;
+    color: white;
+    text-align: center;
+    line-height: 40px;
+    font-size: 20px;
+    transition: 0.5s;
+}
+
+.home .control .prev {
+    left: 0;
+}
+
+.home .control .next {
+    right: 0;
+}
+
+.home .control .prev:hover,
+.home .control .next:hover {
+    background: white;
+    color: #191919;
+}
+
+/*-------home-----------*/
+/*-------middle-----------*/
+.middle {
+    margin: 0 100px;
+}
+
+.middle .top {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.middle .top h3 {
+    text-align: center;
+    width: 640px;
+    font-size: 35px;
+    margin-top: 0;
+    color: green;
+}
+
+.middle .bottom {
+    margin-top: 40px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.middle .bottom .card {
+    width: 370px;
+}
+
+.middle .bottom .card img {
+    background-color: yellow;
+    height: 170px;
+}
+
+
+a.continue,
+h5.card-title {
+    color: green;
+}
+
+h5.card-title {
+    margin-bottom: 20px;
+    font-size: 22px;
+    font-weight: 600;
+}
+
+p.card-text {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 16px;
+    margin-bottom: 0px;
+}
+
+/*-------middle-----------*/
+/*-------actualite-----------*/
+.actualite {
+    background: rgb(225, 222, 222);
+    padding: 100px;
+    margin-top: 50px;
+}
+
+.actualite .bottom .card {
+    width: 100%;
+    max-height: 300px;
+    margin-bottom: 40px;
+}
+
+.actualite .bottom .card .card-body h5.card-title.act {
+    font-size: 35px;
+}
+
+.actualite .top {
+    margin-bottom: 40px;
+}
+
+.actualite .top h3 {
+    font-size: 35px;
+}
+
+.actualite .bottom .card img {
+    max-width: 450px;
+    min-width: 450px;
+    max-height: 300px;
+    transition: 0.5s;
+    height: 100%;
+}
+
+.actualite .bottom .card img:hover {
+    transform: scale(1.1);
+}
+
+.actualite .bottom .card .card-body p.publication {
+    color: grey;
+    font-size: 15px;
+}
+
+.no {
+    background-color: white;
+    color: red;
+    padding: 30px;
+    text-align: center;
+}
+
+/*----------actualite------*/
+/*----------contact------*/
+.full {
+    max-width: 960px;
+    margin: 0 auto;
+    margin-bottom: 50px;
+}
+
+.Contact-Form {
+    height: 80vh;
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+    margin-top: 50px;
+}
+
+.Contact-Form h2 {
+    color: #ffffff;
+    text-transform: capitalize;
+    margin-bottom: 20px;
+    font-size: 30px;
+}
+
+.Contact-Form p {
+    color: #9999B9;
+    margin-bottom: 50px;
+}
+
+.input-fields {
+    width: 45%;
+    float: left;
+    overflow: hidden;
+    margin-right: 30px;
+    margin-top: 50px;
+}
+
+.input-fields input {
+    width: 354px;
+    padding: 15px 20px;
+    margin-bottom: 20px;
+    border-radius: 3px;
+}
+
+.msg {
+    width: 45%;
+    overflow: hidden;
+    margin-top: 60px;
+}
+
+.msg textarea {
+    width: 354px;
+    padding: 10px 20px;
+    margin-bottom: 20px;
+    height: 120px;
+    border-radius: 3px;
+    resize: none;
+}
+
+.Contact-Form button {
+    padding: 15px 20px;
+    color: #ffffff;
+    text-transform: uppercase;
+    border: 1px solid black;
+    background: green;
+    cursor: pointer;
+    border-radius: 3px;
+    margin-right: 40px;
+    margin-top: 0px;
+    transition: 1s ease-in-out;
+}
+
+.Contact-Form button:hover {
+    border: 1px solid black;
+    background: white;
+    color: green;
+}
+
+/*-------Footer-----------*/
+footer {
+    background: green;
+    color: white;
+}
+
+footer .content {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    padding: 50px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+}
+
+footer .content .box h3 {
+    margin: 20px;
+}
+
+footer .content .box {
+    margin-right: 20px;
+}
+
+footer .content .box ul .icon {
+    padding: 10px;
+}
+
+footer .content .box ul .icon i {
+    font-size: 20px;
+    background: white;
+    padding: 10px;
+    color: black;
+    border-radius: 50%;
+}
+
+footer .content .box .icon-admin {
+    padding: 10px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+footer .content .box .icon-admin i {
+    font-size: 20px;
+    background: white;
+    padding: 10px;
+    color: black;
+    border-radius: 50%;
+}
+
+footer .content .box ul {
+    /* margin: 20px; */
+    list-style-type: none;
+    opacity: 0.9;
+}
+
+footer .content .box ul.contact {
+    /* margin: 20px; */
+    list-style-type: disc;
+}
+
+ul.contact {
+    /* margin: 20px; */
+    list-style-type: disc;
+}
+
+footer .content .box ul li {
+    padding: 5px;
+}
+
+footer .content .box ul li a {
+    color: white;
+}
+
+/*-------Footer-----------*/
+
+
+
+
+/*-----------------Diversite----------------*/
+.main-div {
+    max-width: 100%;
+    padding: 50px 100px;
+}
+
+.main-div h1 {
+    color: green;
+    font-size: 35px;
+    font-weight: 900;
+    margin-bottom: 40px;
+}
+
+.main-div p {
+    margin-left: 20px;
+    margin-bottom: 15px;
+    text-align: justify
+}
+
+.main-div h5 {
+    margin-left: 20px;
+    margin-top: 20px;
+}
+
+.banner-top {
+    width: 100%;
+    height: 30px;
+    background: green
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&display=swap');
+
+* {
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+}
+
+.content-about {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    position: relative;
+    background-color: rgb(210, 204, 204);
+    color: green;
+}
+
+.content-about .right {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.right {
+    width: 60%;
+    padding: 5vw 3vw;
+}
+
+.right h1 {
+    font-size: 4vw;
+    line-height: 4.4vw;
+}
+
+
+.right p {
+    font-size: 1.2vw;
+    font-weight: 600;
+    color: black;
+    width: 80%;
+    margin-top: 2vw;
+    margin-bottom: 0vw;
+    text-align: justify;
+    line-height: 25px;
+}
+
+.right p.bottom {
+    margin-bottom: 2vw;
+}
+
+.left {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.left img {
+    margin-top: 150px;
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+}
+
+
+.icon {
+    display: flex;
+    gap: 20px;
+}
+
+.icon img {
+    height: 32px;
+    width: 32px;
+    object-fit: contain;
+    cursor: pointer;
+}
+
+.icon img:hover {
+    /* filter: grayscale(1); */
+    filter: blur(0.5px);
+}
+
+/*-------------mission--------------*/
+.mission {
+    margin-top: 70px;
+    padding: 0 100px;
+}
+
+.mission .content-mission h1 {
+    font-size: 30px;
+    margin-bottom: 30px;
+    color: green;
+    font-weight: 900;
+}
+
+.mission .content-mission ol {
+    margin-top: 40px;
+    margin-left: 50px;
+    text-align: justify;
+}
+
+.mission .content-mission ol li h3 {
+    font-size: 18px;
+    margin-bottom: 15px;
+    margin-top: 30px;
+}
+
+/*-------------admission----------*/
+.admission {
+    margin-top: 70px;
+    padding: 50px 100px;
+    background-color: rgb(170, 167, 167);
+}
+
+.publier {
+    margin-top: 0px;
+    padding: 50px 100px;
+    background-color: rgb(170, 167, 167);
+}
+
+.publier .content-admission h1 {
+    font-size: 30px;
+    margin-bottom: 30px;
+    color: green;
+    font-weight: 900;
+}
+
+.publier .content-admission ul {
+    margin-top: 30px;
+    margin-left: 50px;
+}
+
+.publier .content-admission .piece {
+    margin-left: 30px;
+    margin-top: 30px;
+}
+
+#articleForm {
+    display: flex;
+    flex-direction: column;
+}
+
+#articleForm input,
+#articleForm textarea {
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+#articleForm label {
+    font-size: 17px;
+    font-weight: 600;
+}
+
+#articleForm button {
+    color: white;
+    background-color: blue;
+    padding: 5px;
+    border-radius: 10px;
+    border: none;
+    font-size: 20px;
+}
+
+.admission .content-admission h1 {
+    font-size: 30px;
+    margin-bottom: 30px;
+    color: green;
+    font-weight: 900;
+}
+
+.admission .content-admission ul {
+    margin-top: 30px;
+    margin-left: 50px;
+}
+
+.admission .content-admission .piece {
+    margin-left: 30px;
+    margin-top: 30px;
+}
+
+.nav-about {
+    margin-left: 350px;
+}
+
+.image-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: green;
+}
+
+.admin-image {
+    width: 300px;
+    height: 250px;
+    max-height: 300px;
+}
+
+/*------------------pages-----------*/
+.main {
+    min-height: 100vh;
+}
+
+/*-----------article list----------*/
+.container-list {
+    margin: 0px;
+    padding: 0px;
+}
+
+.list-group-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    border-bottom: 2px dashed black;
+    padding-bottom: 10px;
+}
+
+.list-group-item button {
+    position: absolute;
+    margin-right: 20px;
+    right: 0;
+}
+
+.article-title-menu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 40px;
+}
+
+.green {
+    color: green;
+    font-weight: 900;
+}
+
+/* Responsive Code */
+
+@media (max-width: 700px) {
+
+    .publier {
+        margin-top: 0px;
+        padding: 20px 40px;
+    }
+
+    .content {
+        flex-direction: column;
+    }
+
+    .right {
+        width: 100%;
+        height: 45%;
+        padding: 4vw 6vw;
+    }
+
+
+    .right h1 {
+        font-size: 9vw;
+        line-height: 9vw;
+    }
+
+    .right p {
+        font-size: 4vw;
+        width: 100%;
+        margin: 5vw 0;
+    }
+
+    .left {
+        width: 100%;
+        height: 55%;
+    }
+
+
+
+    .content-about .right {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .right {
+        width: 60%;
+        padding: 3vw 1vw;
+    }
+
+    .right h1 {
+        font-size: 3vw;
+        line-height: 1vw;
+    }
+
+
+    .right p {
+        font-size: 1.2vw;
+        width: 80%;
+        line-height: 15px;
+    }
+
+    .right p.bottom {
+        margin-bottom: 1vw;
+    }
+
+    .left {
+        height: 100%;
+        width: 45%;
+        margin-top: -50px;
+    }
+
+    .left img {
+        height: 100%;
+        width: 100%;
+        object-fit: contain;
+    }
+
+
+    .icon {
+        display: flex;
+        gap: 20px;
+    }
+
+    .icon img {
+        height: 32px;
+        width: 32px;
+        object-fit: contain;
+        cursor: pointer;
+    }
+
+
+    /*-------------mission--------------*/
+    .mission {
+        margin-top: 50px;
+        padding: 0 50px;
+        text-align: justify;
+    }
+
+    .mission .content-mission h1 {
+        font-size: 25px;
+        margin-bottom: 20px;
+    }
+
+    .mission .content-mission ol {
+        margin-top: 30px;
+        margin-left: 20px;
+        text-align: justify;
+    }
+
+    .mission .content-mission ol li h3 {
+        font-size: 18px;
+        margin-bottom: 15px;
+        margin-top: 15px;
+    }
+
+    /*---------admission------------*/
+    .admission {
+        margin-top: 50px;
+        padding: 50px 50px;
+        background-color: rgb(170, 167, 167);
+    }
+
+    .admission .content-admission h1 {
+        font-size: 25px;
+        margin-bottom: 30px;
+        color: green;
+    }
+
+
+}
+
+/*----------------------Login modal form------------------*/
+#loginForm label {
+    width: 30%;
+    margin-bottom: 20px;
+}
+
+#loginForm input {
+    border-radius: 5px;
+    width: 67%;
+}
+
+#loginForm button {
+    margin-top: 20px;
+    width: 100%;
+}
+
+#message {
+    display: none;
+}
+
+strong {
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.message-admin {
+    background-color: green;
+    color: white;
+    padding: 10px;
+    width: 100%;
+    font-size: 15px;
+}
+
+.phone-number {
+    font-size: 15px;
+    margin-top: 0px;
+}
+
+.email-contact {
+    margin-bottom: 0px;
+}
+
+.message-inc {
+    margin-top: 20px;
+    background: red;
+    color: white;
+    width: 100%;
+    text-align: center;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+@media screen and (max-width: 900px) {
+    aside {
+        max-width: 500px;
+    }
+
+    .main {
+        min-height: 100vh;
+    }
+
+    .publier {
+        margin-top: 0px;
+        padding: 20px 40px;
+    }
+
+    .nav-about {
+        margin-right: 0px;
+    }
+
+    /*-----------------Diversite----------------*/
+    .main-div {
+        max-width: 100%;
+        padding: 30px 60px;
+        padding-bottom: 20px;
+    }
+
+    .main-div h1 {
+        color: green;
+        font-size: 25px;
+        font-weight: 900;
+        margin-bottom: 20px;
+    }
+
+    .main-div p {
+        margin-left: 14px;
+        margin-bottom: 10px;
+        text-align: justify
+    }
+
+    .main-div h5 {
+        margin-left: 14px;
+        margin-top: 10px;
+    }
+
+    .banner-top {
+        width: 100%;
+        height: 15px;
+        background: green
+    }
+
+    .list-group-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        flex-direction: column;
+        position: inherit;
+        border-bottom: 2px dashed black;
+        padding-bottom: 10px;
+    }
+
+    .list-group-item button {
+        position: inherit;
+        margin-right: 0px;
+        margin-top: 20px;
+        width: 100%;
+    }
+
+    .article-title-menu {
+        display: none;
+    }
+
+
+    .mission .content-mission ol {
+        margin-top: 40px;
+        margin-left: 30px;
+        text-align: justify;
+    }
+
+
+
+}
+
+/* Responsive Code */
+/*-------about_page------------*/
+
+
+@media screen and (max-width: 930px) {
+    /*-------Footer-----------*/
+
+    footer .content {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    /*-------Footer-----------*/
+}
+
+
+
+@media screen and (max-width: 800px) {
+
+    /*-------navbar-----------*/
+    .text-green {
+        font-size: 17px;
+        margin-right: 50px;
+        font-weight: 900;
+        margin-left: 10px;
+    }
+
+    .navbar {
+        padding: 5px;
+    }
+
+    .flex {
+        display: inline-block;
+        justify-content: space-around;
+    }
+
+    .nav-item {
+        margin-right: 0px;
+    }
+
+    .navbar-light .navbar-toggler-icon {
+        margin-right: 20px;
+    }
+
+    /*-------navbar-----------*/
+
+    /*_______home-------------*/
+    .home {
+        height: 75vh;
+        color: white;
+    }
+
+    .home .caption p {
+        font-size: 15px;
+        margin: 10px 0 15px;
+        font-size: 15px;
+    }
+
+    .home .caption {
+        width: 70%;
+    }
+
+
+    .home .caption h1 {
+        font-size: 35px;
+        margin: 0;
+        font-weight: bold;
+    }
+
+    /*-------home-------------*/
+    .middle .top h3 {
+        text-align: center;
+        width: 100%;
+        font-size: 25px;
+        margin-bottom: 0px;
+    }
+
+    .middle {
+        margin: 0 50px;
+    }
+
+    .middle .bottom {
+        margin-top: 40px;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .middle .bottom .card {
+        width: 500px;
+        margin-top: 40px;
+    }
+
+    .middle .bottom .card img {
+        background-color: yellow;
+        height: auto;
+    }
+
+
+    h5.card-title {
+        margin-bottom: 20px;
+        font-size: 20px;
+        font-weight: 600;
+    }
+
+    /*-------middle-----------*/
+    /*-------actualite-----------*/
+    .actualite {
+        background: rgb(225, 222, 222);
+        padding: 50px;
+        margin-top: 40px;
+    }
+
+    .actualite .bottom .card {
+        max-height: 300px;
+        margin-bottom: 40px;
+    }
+
+    .actualite .bottom .card .card-body h5.card-title.act {
+        font-size: 25px;
+    }
+
+    .actualite .top {
+        margin-bottom: 40px;
+    }
+
+    .actualite .top h3 {
+        font-size: 25px;
+    }
+
+    .actualite .bottom .card img {
+        max-width: 250px;
+        height: 100%;
+        width: 250px;
+        min-width: 100px;
+        max-height: 300px;
+        transition: 0.5s;
+    }
+
+    .actualite .bottom .card img:hover {
+        transform: scale(1.1);
+    }
+
+    .actualite .bottom .card .card-body p.publication {
+        color: grey;
+        font-size: 15px;
+    }
+
+    /*-------Footer-----------*/
+
+    footer .content {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+
+    footer .content .box {
+        margin-right: 2=0px;
+    }
+
+
+    /*-------Footer-----------*/
+
+
+    .list-group-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        flex-direction: column;
+        position: inherit;
+        border-bottom: 2px dashed black;
+        padding-bottom: 10px;
+    }
+
+    .list-group-item button {
+        position: inherit;
+        margin-right: 0px;
+        margin-top: 20px;
+        width: 100%;
+    }
+
+
+    .mission .content-mission ol {
+        margin-top: 40px;
+        margin-left: 30px;
+        text-align: justify;
+    }
+
+
+}
+
+@media screen and (max-width: 1280px) {
+
+    /*_______home-------------*/
+    .home {
+        height: 65vh;
+        color: white;
+    }
+
+}
+
+@media screen and (max-width: 700px) {
+    /*-------Footer-----------*/
+
+    footer .content {
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    /*-------Footer-----------*/
+
+}

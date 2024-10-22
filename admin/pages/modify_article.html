@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type="x-icon" href="../images/logo.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/f90bf87d94.js" crossorigin="anonymous"></script>
+
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css'>
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css'>
+
+    <link href="https://cdn.lineicons.com/4.0/lineicons.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../../style.css">
+    <link rel="stylesheet" href="../sidebar.css">
+    <title>Institution Mixte La Tourterelle</title>
+
+    <style>
+        a.desabled {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand text-success text-green" href="../../index.html">Institution Mixte La Tourterelle</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav flex text-success nav-about">
+                <li class="nav-item">
+                    <a class="nav-link active text-success scale" aria-current="page"
+                        href="../../index.html">Accueil</a>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle text-success scale" href="#" id="navbarDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        À propos
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item text-success" href="../../about.html#us">Qui sommes-nous?</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item text-success" href="../../about.html#mission">Notre mission</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item text-success" href="../../about.html#admission">Condition
+                            d'admission</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-success scale" href="../../index.html#contact">Contact</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="banner-top"></div>
+
+    <div class="wrapper-admin">
+        <aside id="sidebar">
+            <div class="d-flex">
+                <button class="toggle-btn" type="button">
+                    <i class="lni lni-grid-alt"></i>
+                </button>
+                <div class="sidebar-logo">
+                    <a href="../admin.html">Institution Mixte La Tourterelle</a>
+                </div>
+            </div>
+            <ul class="sidebar-nav">
+                <li class="sidebar-item" title="Cette fonctionnalite n'est pas disponible pour le moment.">
+                    <a href="#" class="sidebar-link collapsed has-dropdown desabled" data-bs-toggle="collapse"
+                        data-bs-target="#auth" aria-expanded="false" aria-controls="auth" class="desabled">
+                        <i class="lni lni-user"></i>
+                        <span>Utilisateurs</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="./article.html" class="sidebar-link collapsed has-dropdown" data-bs-toggle="collapse"
+                        data-bs-target="#multi" aria-expanded="false" aria-controls="multi">
+                        <i class="fa-solid fa-newspaper"></i>
+                        <span>Publier</span>
+                    </a>
+                    <ul id="multi" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
+                        <li class="sidebar-item">
+                            <a href="./article.html" class="sidebar-link collapsed" data-bs-toggle="collapse"
+                                data-bs-target="#multi-two" aria-expanded="false" aria-controls="multi-two">
+                                <button>Publier</button>
+                            </a>
+
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="sidebar-item">
+                    <a href="./modify.html" class="sidebar-link collapsed has-dropdown" data-bs-toggle="collapse"
+                        data-bs-target="#multi" aria-expanded="false" aria-controls="multi">
+                        <i class="fa-solid fa-pen"></i>
+                        <span>Modifier</span>
+                    </a>
+                    <ul id="multi" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
+                        <li class="sidebar-item">
+                            <a href="./modify.html" class="sidebar-link collapsed" data-bs-toggle="collapse"
+                                data-bs-target="#multi-two" aria-expanded="false" aria-controls="multi-two">
+                                <button>Modifier</button>
+                            </a>
+                            <!-- <ul id="multi-two" class="sidebar-dropdown list-unstyled collapse">
+                                <li class="sidebar-item">
+                                    <a href="#" class="sidebar-link">Link 1</a>
+                                </li>
+                                <li class="sidebar-item">
+                                    <a href="#" class="sidebar-link">Link 2</a>
+                                </li>
+                            </ul> -->
+                        </li>
+                    </ul>
+                </li>
+                <li class="sidebar-item">
+                    <a href="./delete_article.html" class="sidebar-link collapsed has-dropdown"
+                        data-bs-toggle="collapse" data-bs-target="#multi" aria-expanded="false" aria-controls="multi">
+                        <i class="fa-solid fa-trash"></i>
+                        <span>Supprimer</span>
+                    </a>
+                    <ul id="multi" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
+                        <li class="sidebar-item">
+                            <a href="./delete_article.html" class="sidebar-link collapsed" data-bs-toggle="collapse"
+                                data-bs-target="#multi-two" aria-expanded="false" aria-controls="multi-two">
+                                <button>Supprimer</button>
+                            </a>
+
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="sidebar-item" title="Cette fonctionnalite n'est pas disponible pour le moment.">
+                    <a href="#" class="sidebar-link collapsed has-dropdown desabled" data-bs-toggle="collapse" desabled>
+                        <i class="lni lni-agenda"></i>
+                        <span>Autres activites</span>
+                    </a>
+
+                </li>
+
+
+
+                <li class="sidebar-item" title="Cette fonctionnalite n'est pas disponible pour le moment.">
+                    <a href="#" class="sidebar-link desabled">
+                        <i class="lni lni-cog"></i>
+                        <span>Setting</span>
+                    </a>
+                </li>
+            </ul>
+            <div class="sidebar-footer">
+                <a href="../../index.html" class="sidebar-link">
+                    <i class="lni lni-exit"></i>
+                    <span>Sortir</span>
+                </a>
+            </div>
+        </aside>
+
+        <div class="main-side p-3">
+            <h1 class="green">Modifier l'Article</h1>
+            <form id="modifyForm">
+                <input type="hidden" id="articleId">
+                <div class="mb-3">
+                    <label for="title" class="form-label">Titre</label>
+                    <input type="text" id="title" class="form-control" placeholder="Titre" required>
+                </div>
+                <div class="mb-3">
+                    <label for="content" class="form-label">Contenu</label>
+                    <textarea id="content" class="form-control" placeholder="Contenu" required
+                        oninput="limitWords(this, 55)"></textarea>
+                    <p id="wordCount">0/55 mots</p>
+                </div>
+                <div class="mb-3">
+                    <label for="image">Image *</label>
+                    <input type="file" id="image" accept="image/*">
+                </div>
+                <button type="submit" class="btn btn-primary">Modifier</button>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        <div class="s_container">
+            <div class="content">
+                <div class="box">
+                    <h3>Plan du site</h3>
+                    <div>
+                        <ul class="contact">
+                            <li>
+                                <a href="../../index.html">Acceuil</a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    À propos
+                                </a>
+                                <ul>
+                                    <li><a href="../../about.html#us">Qui sommes-nous?</a></li>
+                                    <li><a href="../../about.html#mission">Notre mission</a></li>
+                                    <li><a href="../../about.html#admission">Condition d'admission</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a class="" href="../../index.thml#contact">Contact</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="box">
+                    <h3>Institution Mixte La Tourterelle</h3>
+                    <ul class="contact">
+                        <li>No. 1 route de meyotte après le pont</li>
+                        <li>Pétion ville/Haiti</li>
+                        <!-- <div class="icon">
+                            <i class="fa fa-facebook"></i>
+                            <i class="fa fa-instagram"></i>
+                            <i class="fa fa-twitter"></i>
+                            <i class="fa fa-youtube"></i>
+                        </div> -->
+                    </ul>
+                    <h3>Institution Mixte Étoile D’or</h3>
+                    <ul class="contact">
+                        <li>No. 5 Bas Baptiste Impasse Robinson (sur la route de diegue)</li>
+                        <li>Pétion ville/Haiti</li>
+                        <!-- <div class="icon">
+                            <i class="fa fa-facebook"></i>
+                            <i class="fa fa-instagram"></i>
+                            <i class="fa fa-twitter"></i>
+                            <i class="fa fa-youtube"></i>
+                        </div> -->
+                    </ul>
+                </div>
+
+                <div class="box">
+                    <h3>Contact</h3>
+                    <p>Pour nous joindre</p>
+                    <ul class="contact">
+                        <li>institutionmixtelatourterelle@gmail.com</li>
+                        <li>institutionmixteetoiledor@gmail.com</li>
+                        <li>(509) 3414-0059 | (509) 3752-2687</li>
+                    </ul>
+                </div>
+                <div class="box">
+                    <h3>Politique</h3>
+                    <ul class="contact">
+                        <li>Sécurité & Confidentialité</li>
+                        <li> Environnementale</li>
+                        <li>FAQ</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function limitWords(textarea, maxWords) {
+            const words = textarea.value.split(/\s+/).filter(Boolean);
+            const wordCountDisplay = document.getElementById('wordCount');
+
+            // Si le nombre de mots dépasse la limite
+            if (words.length > maxWords) {
+                // Efface les mots en trop
+                const excessWordsCount = words.length - maxWords;
+                // Supprime les derniers mots en trop
+                textarea.value = words.slice(0, maxWords).join(' ');
+                wordCountDisplay.textContent = `Vous avez atteint la limite de ${maxWords} mots.`;
+            } else {
+                wordCountDisplay.textContent = `${words.length}/${maxWords} mots`;
+            }
+        }
+
+    </script>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
+        import { getFirestore, doc, getDoc, updateDoc } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js";
+
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyBX_g_LMjwihaLYswXz6nr3Pqio9u7OwkI",
+            authDomain: "tourtterelle-e62c6.firebaseapp.com",
+            projectId: "tourtterelle-e62c6",
+            storageBucket: "tourtterelle-e62c6.appspot.com",
+            messagingSenderId: "365846099562",
+            appId: "1:365846099562:web:0ff6bdec5afefa0d66fc13",
+            measurementId: "G-TD81R40LPD"
+        };
+
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const articleId = urlParams.get('id');
+
+        console.log(urlParams)
+
+        async function loadArticle() {
+            const articleRef = doc(db, 'articles', articleId);
+            const articleSnap = await getDoc(articleRef);
+
+            if (articleSnap.exists()) {
+                const article = articleSnap.data();
+                document.getElementById('articleId').value = articleId;
+                document.getElementById('title').value = article.title;
+                document.getElementById('content').value = article.content;
+            } else {
+                console.log("Aucun document trouvé !");
+            }
+        }
+
+        document.getElementById('modifyForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const title = document.getElementById('title').value;
+            const content = document.getElementById('content').value;
+            const articleRef = doc(db, 'articles', articleId);
+
+            await updateDoc(articleRef, {
+                title: title,
+                content: content
+            });
+
+            alert('Article modifié avec succès !');
+        });
+
+        loadArticle();
+    </script>
+</body>
+
+</html>

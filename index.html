@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type="x-icon" href="./images/logo.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/f90bf87d94.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="style.css">
+
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
+
+
+    <title>Institution Mixte La Tourterelle</title>
+
+    <style>
+
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand text-success text-green" href="#">Institution Mixte La Tourterelle</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav flex text-success">
+                <li class="nav-item">
+                    <a class="nav-link active  text-success scale" aria-current="page" href="#">Acceuil</a>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle text-success scale" href="#" id="navbarDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        À propos
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item text-success" href="./about.html">Qui sommes-nous?</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item text-success" href="./about.html#mission">Notre mission</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item text-success" href="./about.html#admission">Condition d'admission</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-success scale" href="#contact">Contact</a>
+                </li>
+            </ul>
+            <form class="d-flex">
+                <input class="form-control me-2" type="search" placeholder="Rechercher..." aria-label="Search"
+                    id="search-bar">
+                <button class="btn btn-outline-success" type="submit">Rechercher</button>
+            </form>
+        </div>
+    </nav>
+    <script>
+        document.getElementById('search-bar').addEventListener('input', function () {
+            const query = this.value.toLowerCase();
+            const cards = document.querySelectorAll('.actualite-search');
+            var found = false;
+
+            cards.forEach(card => {
+                const title = card.querySelector('.card-title').innerText.toLowerCase();
+                if (title.includes(query)) {
+                    card.style.display = 'block';
+                    found = true;
+                } else {
+                    card.style.display = 'none';
+                }
+
+                console.log(found);
+            });
+
+
+
+            if (found) {
+                document.querySelector('.no').style.display = 'none';
+            } else {
+                document.querySelector('.no').style.display = 'block';
+            }
+        });
+    </script>
+
+
+    <section class="home">
+        <div class="slider">
+            <div class="slide active">
+                <div class="container">
+                    <div class="caption">
+                        <h1>Institution Mixte La Tourterelle</h1>
+                        <p>La Tourterelle s'engage à faire de chaque apprenant un membre épanoui et actif de la société,
+                            prêt à réaliser son plein potentiel ! </p>
+                        <!-- <a href="#">Magasiner maintenant</a> -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- <div class="slide">
+                <div class="container">
+                    <div class="caption">
+                        <h1>iphone 12 Pro and iPhone 12 Pro Max </h1>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, ab tempora expedita vitae
+                            porro.</p>
+                        <a href="#">shop now</a>
+                    </div>
+                </div>
+            </div> -->
+
+            <!-- <div class="slide">
+                <div class="container">
+                    <div class="caption">
+                        <h1>iphone 12 Pro and iPhone 12 Pro Max </h1>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse, ab tempora expedita vitae
+                            porro.</p>
+                        <a href="#">shop now</a>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+
+            <!--Control-->
+            <!-- <div class="control">
+            <div class="prev">
+                <i class="fa fa-arrow-circle-left"></i>
+            </div>
+            <div class="next">
+                <i class="fa fa-arrow-circle-right"></i>
+            </div>
+            </div> -->
+        </div>
+    </section>
+
+    <script>
+        const slide = document.querySelector(".slider").children;
+        const prev = document.querySelector(".prev");
+        const next = document.querySelector(".next");
+
+        let index = 0;
+
+        prev.addEventListener("click", function () {
+            prevslide()
+        })
+
+        next.addEventListener("click", function () {
+            nextslide();
+        })
+
+        function prevslide() {
+            if (index == 0) {
+                index = slide.length - 1;
+            } else {
+                index--;
+            }
+            changeSlide();
+        }
+
+        function nextslide() {
+            if (index == slide.length - 1) {
+                index = 0;
+            } else {
+                index++;
+            }
+            changeSlide();
+        }
+
+        function changeSlide() {
+            for (let i = 0; i < slide.length; i++) {
+                slide[i].classList.remove("active");
+            }
+            slide[index].classList.add("active");
+        }
+
+        function autoPlay() {
+            nextslide();
+        }
+    </script>
+
+    <section class="middle">
+        <div class="top">
+            <h3>Une formation complète et dynamique, axée sur le développement
+                intégral de chaque élève.</h3>
+        </div>
+        <div class="bottom">
+            <div class="card">
+                <img src="./images/mixite-sociale2-585x300-removebg-preview.png" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Diversité Sociale</h5>
+                    <p class="card-text"> Notre établissement est un lieu où les élèves de différentes origines,
+                        cultures et parcours se rencontrent, apprennent et grandissent ensemble.</p>
+                    <a href="./pages/diversite.html" class="continue">En savoir plus</a>
+                </div>
+            </div>
+            <div class="card">
+                <img src="./images/set-illustrations-children-studying-home-260nw-1744174781-removebg-preview-removebg-preview.png"
+                    class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title"> Accompagnement Personnalisé</h5>
+                    <p class="card-text"> Quelle que soit leur origine, leurs talents ou leurs besoins, nous nous
+                        engageons à soutenir chaque enfant dans son parcours éducatif.</p>
+                    <a href="./pages/accompagnement.html" class="continue">En savoir plus</a>
+                </div>
+            </div>
+            <div class="card">
+                <img src="./images/Tiny-PNG-The_Secret_Game_Changer_Social_Media_Customer_Engagement_-removebg-preview.png"
+                    class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Engagement Communautaire</h5>
+                    <p class="card-text"> Nous croyons que l'apprentissage ne se limite pas aux murs de la classe, mais
+                        s'étend à l'interaction avec notre environnement et notre communauté.</p>
+                    <a href="./pages/engagement.html" class="continue">En savoir plus</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="actualite">
+        <div class="top">
+            <h3>Actualités</h3>
+        </div>
+        <p class="no">Aucun article ne correspond.</p>
+
+        <div class="bottom" id="articles">
+            <div class="card actualite-search">
+                <div class="row g-0">
+                    <div class="col-md-5 col-sm-5 col-12">
+                        <img src="images/h4.jpg" class="img-fluid rounded-start" alt="...">
+                    </div>
+                    <div class="col-md-7 col-sm-7 col-12">
+                        <div class="card-body">
+                            <p class="publication"><i class="fa-regular fa-calendar-days"></i><small
+                                    class="text-muted"></small>
+                                20 Oct, 2024</small></p>
+                            <h5 class="card-title act">Fête du drapeau</h5>
+                            <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas ipsa,
+                                consectetur similique incidunt reiciendis atque. Exercitationem quod officia delectus
+                                odit eveniet vitae nihil modi pariatur, architecto sequi enim, libero suscipit!</p>
+                            <a href="#" class="card-text continue">Lire l'article</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card actualite-search">
+                <div class="row g-0">
+                    <div class="col-md-5 col-sm-5">
+                        <img src="images/flat-national-science-day-illustration_23-2149255525 (1).png"
+                            class="img-fluid rounded-start" alt="...">
+                    </div>
+                    <div class="col-md-7 col-sm-7">
+                        <div class="card-body">
+                            <p class="publication"><i class="fa-regular fa-calendar-days"></i><small
+                                    class="text-muted"></small>
+                                18 Avr, 2024</small></p>
+                            <h5 class="card-title act">Journée scientifique</h5>
+                            <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas ipsa,
+                                consectetur similique incidunt reiciendis atque. Exercitationem quod officia delectus
+                                odit eveniet vitae nihil modi pariatur, architecto sequi enim, libero suscipit!</p>
+                            <a href="#" class="card-text continue">Lire l'article</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="contact" id="contact">
+        <div class="full">
+
+            <form class="Contact-Form" id="contactForm">
+                <h1> Contact</h1>
+                <div class="input-fields">
+                    <input type="text" class="input" placeholder="Votre Nom *" id="name">
+                    <input type="text" class="input" placeholder="Votre Emaill *" id="email_contact">
+                    <input type="text" class="input" placeholder="Votre Phone *" id="phone">
+
+                </div>
+                <div class="msg">
+                    <textarea placeholder="Message *" id="message-contact"></textarea>
+
+                </div>
+                <div>
+                    <button type="submit">Envoyer un message</button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+
+
+    <section>
+        <div class="modal" tabindex="-1" id="Mymodal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Admin Connection</h5>
+                        <button type="button" class="btn-close" id="close" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="loginForm">
+                            <label for="password">Email :</label>
+                            <input type="email" id="email" name="email" placeholder="holla@gmail.com" required>
+                            <br>
+                            <label for="password">Mot de passe :</label>
+                            <input type="password" id="password" name="password" required>
+
+                            <br>
+                            <button type="submit" class="btn btn-primary">Se connecter</button>
+                        </form>
+                        <div id="message" class="message-inc"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <footer>
+        <div class="s_container">
+            <div class="content">
+                <div class="box">
+                    <h3>Plan du site</h3>
+                    <div>
+                        <ul class="contact">
+                            <li>
+                                <a href="#">Acceuil</a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    À propos
+                                </a>
+                                <ul>
+                                    <li><a href="#">Qui sommes-nous?</a></li>
+                                    <li><a href="#">Services</a></li>
+                                    <li><a href="#">Condition d'admission</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a class="" href="#contact">Contact</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="box">
+                    <h3>Institution Mixte La Tourterelle</h3>
+                    <ul class="contact">
+                        <li>No. 1 route de meyotte après le pont</li>
+                        <li>Pétion ville/Haiti</li>
+                        <!-- <div class="icon">
+                            <i class="fa fa-facebook"></i>
+                            <i class="fa fa-instagram"></i>
+                            <i class="fa fa-twitter"></i>
+                            <i class="fa fa-youtube"></i>
+                        </div> -->
+                    </ul>
+                    <h3>Institution Mixte Étoile D’or</h3>
+                    <ul class="contact">
+                        <li>No. 5 Bas Baptiste Impasse Robinson (sur la route de diegue)</li>
+                        <li>Pétion ville/Haiti</li>
+                        <!-- <div class="icon">
+                            <i class="fa fa-facebook"></i>
+                            <i class="fa fa-instagram"></i>
+                            <i class="fa fa-twitter"></i>
+                            <i class="fa fa-youtube"></i>
+                        </div> -->
+                    </ul>
+                </div>
+
+                <div class="box">
+                    <h3>Contact</h3>
+                    <p>Pour nous joindre</p>
+                    <ul class="contact">
+                        <li>institutionmixtelatourterelle@gmail.com</li>
+                        <li>institutionmixteetoiledor@gmail.com</li>
+                        <li>(509) 3414-0059 | (509) 3752-2687</li>
+                    </ul>
+                </div>
+                <div class="box">
+                    <h3>Politique</h3>
+                    <ul class="contact">
+                        <li>Sécurité & Confidentialité</li>
+                        <li> Environnementale</li>
+                        <li>FAQ</li>
+                    </ul>
+                    <div class="icon-admin">
+                        <a href="#"><i class="fa fa-user" id="loginLink"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </footer>
+
+    <!-- <script>
+        const loginLink = document.getElementById('loginLink'); // Assurez-vous que cet ID est correct
+
+        loginLink.addEventListener('click', function (event) {
+            console.log("clicked");
+
+            event.preventDefault(); // Empêche le lien de recharger la page
+            $('#myModal').modal('show'); // Utilisez l'ID du modal ici
+        });
+
+        document.getElementById('loginForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const password = document.getElementById('password').value;
+            const correctPassword = 'guerilla'; // Remplacez par votre mot de passe
+
+            if (password === correctPassword) {
+                // Rediriger vers la page admin
+                window.location.href = './admin/admin.html'; // Remplacez par le nom de votre page admin
+            } else {
+                document.getElementById('message').textContent = 'Mot de passe incorrect.';
+            }
+        });
+    </script> -->
+
+    <script>
+        const loginLink = document.getElementById('loginLink'); // Assurez-vous que cet ID est correct
+
+
+        loginLink.addEventListener('click', function (event) {
+            event.preventDefault();
+            console.log("clicked");
+            $('#Mymodal').modal('show');
+
+
+
+            // const myModal = document.getElementById('myModal')
+            // const myInput = document.getElementById('myInput')
+
+            // myModal.style.display = 'block';
+        });
+
+        const close = document.getElementById("close");
+
+        close.addEventListener("click", function () {
+            $('#Mymodal').modal('hide');
+        })
+
+
+
+    </script>
+
+    <script type="module">
+        // Importer les fonctions nécessaires de Firebase
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
+        import { getFirestore, collection, query, orderBy, onSnapshot } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js";
+
+        // Configuration Firebase
+        const firebaseConfig = {
+            apiKey: "AIzaSyBX_g_LMjwihaLYswXz6nr3Pqio9u7OwkI",
+            authDomain: "tourtterelle-e62c6.firebaseapp.com",
+            projectId: "tourtterelle-e62c6",
+            storageBucket: "tourtterelle-e62c6.appspot.com",
+            messagingSenderId: "365846099562",
+            appId: "1:365846099562:web:0ff6bdec5afefa0d66fc13",
+            measurementId: "G-TD81R40LPD"
+        };
+
+        // Initialiser Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+        const articlesContainer = document.getElementById('articles');
+
+        const months = [
+            'Jan', 'Fév', 'Mar', 'Avr', 'Mai', 'Juin',
+            'Juil', 'Août', 'Sep', 'Oct', 'Nov', 'Déc'
+        ];
+
+        const articlesRef = collection(db, 'articles');
+        const q = query(articlesRef, orderBy('createdAt', 'desc'));
+
+        onSnapshot(q, (snapshot) => {
+            articlesContainer.innerHTML = '';
+            snapshot.forEach((doc) => {
+                const article = doc.data();
+
+                // Formatage de la date
+                const date = article.createdAt.toDate(); // Convertir en objet Date
+                const day = date.getDate();
+                const month = months[date.getMonth()];
+                const year = date.getFullYear();
+                const formattedDate = `${day} ${month}, ${year}`;
+
+                // Affichage de l'article dans une carte
+                articlesContainer.innerHTML += `
+                    <div class="card actualite-search">
+                        <div class="row g-0">
+                            <div class="col-md-5 col-sm-5 col-12">
+                                <img src="${article.imageUrl}" class="img-fluid rounded-start" alt="${article.title}">
+                            </div>
+                            <div class="col-md-7 col-sm-7 col-12">
+                                <div class="card-body">
+                                    <p class="publication"><i class="fa-regular fa-calendar-days"></i>
+                                        <small class="text-muted">${formattedDate}</small>
+                                    </p>
+                                    <h5 class="card-title act">${article.title}</h5>
+                                    <p class="card-text">${article.content}</p>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+        });
+
+        // Importer les fonctions nécessaires de Firebase
+        //import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
+        import { addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js";
+        import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-storage.js";
+
+
+
+        document.getElementById('contactForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const name = document.getElementById('name').value;
+            const email_contact = document.getElementById('email_contact').value;
+            const phone = document.getElementById('phone').value;
+            const message = document.getElementById('message-contact').value;
+
+            // Vérification des champs
+            if (!name || !email || !phone || !message) {
+                alert('Veuillez remplir tous les champs.');
+                return;
+            }
+
+
+
+            try {
+
+
+                // Enregistrer le message dans Firestore
+                await addDoc(collection(db, 'contact'), {
+                    email: email_contact,
+                    message: message,
+                    name: name,
+                    phone: phone,
+                    published: serverTimestamp() // Utiliser serverTimestamp ici
+                });
+
+                alert('Message envoyé avec succès !');
+                document.getElementById('contactForm').reset();
+            } catch (error) {
+                console.error('Erreur lors de l\'envoie du message:', error);
+            }
+        });
+    </script>
+
+    <script type="module">
+
+
+
+
+    </script>
+
+    <script src="./admin/adminAuth.js"></script>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>

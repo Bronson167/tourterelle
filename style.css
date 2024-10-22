@@ -2194,6 +2194,13 @@ strong {
         display: none;
     }
 
+    .publier {
+        margin-top: 0px;
+        padding: 20px 20px;
+    }
+
+
+
 }
 
 @media screen and (max-width:360px) {

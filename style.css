@@ -926,7 +926,435 @@ strong {
     border-radius: 10px;
 }
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 1280px) {
+
+    /*_______home-------------*/
+    .home {
+        height: 50vh;
+        color: white;
+    }
+
+}
+
+@media screen and (max-width: 930px) {
+    /*-------Footer-----------*/
+
+    footer .content {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    /*-------Footer-----------*/
+}
+
+
+@media screen and (max-width: 920px) {
+
+    /*-------navbar-----------*/
+    .text-green {
+        font-size: 25px;
+        margin-right: 0px;
+        font-weight: 900;
+        margin-left: 10px;
+        text-align: center;
+    }
+
+    .navbar {
+        padding: 10px;
+    }
+
+
+
+    .navbar-light .navbar-toggler-icon {
+        margin-right: 5px;
+    }
+
+    /*-------navbar-----------*/
+
+    /*_______home-------------*/
+    .home {
+        height: 50vh;
+        color: white;
+    }
+
+    .home .caption p {
+        font-size: 15px;
+        margin: 5px 0 15px;
+    }
+
+    .home .caption {
+        width: 50%;
+        margin-left: 20px;
+    }
+
+
+    .home .caption h1 {
+        font-size: 30px;
+        margin: 0;
+        margin-bottom: 10px;
+    }
+
+    /*-------home-------------*/
+    .middle .top h3 {
+        text-align: center;
+        width: 60%;
+        font-size: 18px;
+        margin-bottom: 0px;
+    }
+
+    .middle {
+        margin: 0 20px;
+    }
+
+    .middle .bottom {
+        margin-top: 25px;
+        display: flex;
+        align-items: left;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+    .middle .bottom .card {
+        width: 45%;
+        margin-top: 50px;
+        margin-right: 0px;
+    }
+
+
+
+    h5.card-title {
+        margin-bottom: 15px;
+        font-size: 18px;
+        line-height: 25px;
+    }
+
+    /*-------middle-----------*/
+    /*-------actualite-----------*/
+    .actualite {
+        background: rgb(225, 222, 222);
+        padding: 20px;
+        margin-top: 50px;
+    }
+
+    .actualite .bottom .card {
+        width: 100%;
+        max-height: 800px;
+        min-height: 260px;
+        margin-bottom: 20px;
+        text-align: justify;
+    }
+
+    .actualite .bottom .card .card-body h5.card-title.act {
+        font-size: 20px;
+        text-align: left;
+    }
+
+    .actualite .top {
+        margin-bottom: 20px;
+    }
+
+    .actualite .top h3 {
+        font-size: 25px;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    .actualite .bottom .card img {
+        max-width: 360px;
+        min-width: 360px;
+        max-height: 300px;
+        transition: 0.5s;
+
+    }
+
+    .actualite .bottom .card img:hover {
+        transform: scale(1.1);
+    }
+
+    .actualite .bottom .card .card-body p.publication {
+        color: grey;
+        font-size: 15px;
+
+    }
+
+    .no {
+        background-color: white;
+        color: red;
+        padding: 30px;
+        text-align: center;
+    }
+
+    .full {
+        max-width: 960px;
+        margin: 0 auto;
+        margin-bottom: 50px;
+    }
+
+    .Contact-Form {
+        height: 30vh;
+        width: 100%;
+        margin: 0 auto;
+        text-align: center;
+        margin-top: 50px;
+    }
+
+    .Contact-Form h2 {
+        color: #ffffff;
+        text-transform: capitalize;
+        margin-bottom: 20px;
+        font-size: 30px;
+    }
+
+    .Contact-Form p {
+        color: #9999B9;
+        margin-bottom: 50px;
+    }
+
+    .input-fields {
+        width: 45%;
+        float: left;
+        overflow: hidden;
+        margin-right: 30px;
+        margin-top: 50px;
+    }
+
+    .input-fields input {
+        width: 354px;
+        padding: 15px 20px;
+        margin-bottom: 20px;
+        border-radius: 3px;
+    }
+
+    .msg {
+        width: 45%;
+        overflow: hidden;
+        margin-top: 60px;
+    }
+
+    .msg textarea {
+        width: 354px;
+        padding: 10px 20px;
+        margin-bottom: 20px;
+        height: 120px;
+        border-radius: 3px;
+        resize: none;
+    }
+
+    .Contact-Form button {
+        padding: 15px 20px;
+        color: #ffffff;
+        text-transform: uppercase;
+        border: 1px solid black;
+        background: green;
+        cursor: pointer;
+        border-radius: 3px;
+        margin-right: 40px;
+        margin-top: 0px;
+        transition: 1s ease-in-out;
+    }
+
+    .Contact-Form button:hover {
+        border: 1px solid black;
+        background: white;
+        color: green;
+    }
+
+
+    /*----------actualite------*/
+    /*-------Footer-----------*/
+    /*----------contact------*/
+    /* .full {
+        max-width: 960px;
+        margin: 0 auto;
+        margin-bottom: 30px;
+    }
+
+    .Contact-Form {
+        height: 50vh;
+        width: 100%;
+        padding-left: 20px;
+        text-align: center;
+        margin-top: 50px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .Contact-Form h2 {
+        color: #ffffff;
+        text-transform: capitalize;
+        margin-bottom: 20px;
+        font-size: 22px;
+    }
+
+    .Contact-Form p {
+        color: #9999B9;
+        margin-bottom: 20px;
+    }
+
+    .input-fields {
+        width: 100%;
+        float: left;
+        overflow: visible;
+        margin-right: 0px;
+        margin-top: 50px;
+        padding-right: 30px;
+    }
+
+    .input-fields input {
+        width: 100%;
+        padding: 10px 15px;
+        margin-bottom: 20px;
+        border-radius: 5px;
+        border: 1px solid black;
+    }
+
+    .msg {
+        width: 100%;
+        overflow: visible;
+        margin-top: 20px;
+        padding-right: 30px;
+    }
+
+    .msg textarea {
+        width: 100%;
+        padding: 10px 20px;
+        margin-bottom: 20px;
+        height: 120px;
+        border-radius: 5px;
+        resize: none;
+        border: 1px solid black;
+    }
+
+    .Contact-Form button {
+        width: 92%;
+        padding: 15px 20px;
+        color: #ffffff;
+        text-transform: uppercase;
+        border: 1px solid black;
+        background: green;
+        cursor: pointer;
+        border-radius: 3px;
+        margin-right: 0px;
+        margin-top: 0px;
+        transition: 1s ease-in-out;
+    }
+
+    .Contact-Form button:hover {
+        border: 1px solid black;
+        background: white;
+        color: green;
+    } */
+
+
+
+    footer {
+        width: 100%;
+        overflow: hidden;
+    }
+
+    footer .content {
+        grid-template-columns: repeat(2, 1fr);
+        width: 100%;
+        overflow: hidden;
+    }
+
+
+    footer .content .box {
+        margin-right: 0px;
+        overflow: hidden;
+    }
+
+    footer .content .box h3 {
+        margin-right: 0px;
+    }
+
+    /*-------Footer-----------*/
+
+
+    .list-group-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        flex-direction: column;
+        position: inherit;
+        border-bottom: 2px dashed black;
+        padding-bottom: 10px;
+    }
+
+    .list-group-item button {
+        position: inherit;
+        margin-right: 0px;
+        margin-top: 20px;
+        width: 100%;
+    }
+
+
+    .mission .content-mission ol {
+        margin-top: 40px;
+        margin-left: 30px;
+        text-align: justify;
+    }
+
+
+}
+
+@media screen and (max-width: 890px) {
+    .actualite {
+        background: rgb(225, 222, 222);
+        padding: 20px;
+        margin-top: 50px;
+    }
+
+    .actualite .bottom .card {
+        width: 100%;
+        max-height: 800px;
+        min-height: 260px;
+        margin-bottom: 20px;
+        text-align: justify;
+    }
+
+    .actualite .bottom .card .card-body h5.card-title.act {
+        font-size: 20px;
+        text-align: left;
+    }
+
+    .actualite .top {
+        margin-bottom: 20px;
+    }
+
+    .actualite .top h3 {
+        font-size: 25px;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    .actualite .bottom .card img {
+        max-width: 300px;
+        min-width: 300px;
+        max-height: 300px;
+        transition: 0.5s;
+
+    }
+
+    .actualite .bottom .card img:hover {
+        transform: scale(1.1);
+    }
+
+    .actualite .bottom .card .card-body p.publication {
+        color: grey;
+        font-size: 15px;
+
+    }
+
+    .no {
+        background-color: white;
+        color: red;
+        padding: 30px;
+        text-align: center;
+    }
+}
+
+/* @media screen and (max-width: 900px) {
     aside {
         max-width: 500px;
     }
@@ -945,7 +1373,7 @@ strong {
     }
 
     /*-----------------Diversite----------------*/
-    .main-div {
+/* .main-div {
         max-width: 100%;
         padding: 30px 60px;
         padding-bottom: 20px;
@@ -1001,32 +1429,22 @@ strong {
         margin-top: 40px;
         margin-left: 30px;
         text-align: justify;
-    }
+    } */
 
 
 
-}
+/* }  */
 
 /* Responsive Code */
 /*-------about_page------------*/
 
 
-@media screen and (max-width: 930px) {
-    /*-------Footer-----------*/
 
-    footer .content {
-        grid-template-columns: repeat(3, 1fr);
-    }
-
-    /*-------Footer-----------*/
-}
-
-
-
+/*
 @media screen and (max-width: 800px) {
 
     /*-------navbar-----------*/
-    .text-green {
+/* .text-green {
         font-size: 17px;
         margin-right: 50px;
         font-weight: 900;
@@ -1048,13 +1466,13 @@ strong {
 
     .navbar-light .navbar-toggler-icon {
         margin-right: 20px;
-    }
+    } */
 
-    /*-------navbar-----------*/
+/*-------navbar-----------*/
 
-    /*_______home-------------*/
-    .home {
-        height: 75vh;
+/*_______home-------------*/
+/* .home {
+        height: 50vh;
         color: white;
     }
 
@@ -1073,10 +1491,10 @@ strong {
         font-size: 35px;
         margin: 0;
         font-weight: bold;
-    }
+    } */
 
-    /*-------home-------------*/
-    .middle .top h3 {
+/*-------home-------------*/
+/* .middle .top h3 {
         text-align: center;
         width: 100%;
         font-size: 25px;
@@ -1110,11 +1528,11 @@ strong {
         margin-bottom: 20px;
         font-size: 20px;
         font-weight: 600;
-    }
+    } */
 
-    /*-------middle-----------*/
-    /*-------actualite-----------*/
-    .actualite {
+/*-------middle-----------*/
+/*-------actualite-----------*/
+/* .actualite {
         background: rgb(225, 222, 222);
         padding: 50px;
         margin-top: 40px;
@@ -1153,19 +1571,417 @@ strong {
     .actualite .bottom .card .card-body p.publication {
         color: grey;
         font-size: 15px;
-    }
+    } */
 
-    /*-------Footer-----------*/
+/*-------Footer-----------*/
 
-    footer .content {
+/* footer .content {
         grid-template-columns: repeat(2, 1fr);
     }
 
 
     footer .content .box {
-        margin-right: 2=0px;
+        margin-right: 20px;
     }
 
+
+    /*-------Footer-----------*/
+
+
+/* .list-group-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        flex-direction: column;
+        position: inherit;
+        border-bottom: 2px dashed black;
+        padding-bottom: 10px;
+    }
+
+    .list-group-item button {
+        position: inherit;
+        margin-right: 0px;
+        margin-top: 20px;
+        width: 100%;
+    }
+
+
+    .mission .content-mission ol {
+        margin-top: 40px;
+        margin-left: 30px;
+        text-align: justify;
+    } */
+
+
+/* } */
+
+@media screen and (max-width: 600) {
+
+    /*-------actualite-----------*/
+    .actualite {
+        background: rgb(225, 222, 222);
+        padding: 20px;
+        margin-top: 50px;
+    }
+
+    .actualite .bottom .card {
+        width: 100%;
+        max-height: 500px;
+        min-height: 650px;
+        margin-bottom: 20px;
+    }
+
+    .actualite .bottom .card .card-body h5.card-title.act {
+        font-size: 20px;
+        text-align: center;
+    }
+
+    .actualite .top {
+        margin-bottom: 20px;
+    }
+
+    .actualite .top h3 {
+        font-size: 25px;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    .actualite .bottom .card img {
+        max-width: 450px;
+        min-width: 100%;
+        max-height: 250px;
+        transition: 0.5s;
+        height: 100%;
+    }
+
+    .actualite .bottom .card img:hover {
+        transform: scale(1.1);
+    }
+
+    .actualite .bottom .card .card-body p.publication {
+        color: grey;
+        font-size: 15px;
+    }
+
+    .no {
+        background-color: white;
+        color: red;
+        padding: 30px;
+        text-align: center;
+    }
+
+    /*----------actualite------*/
+}
+
+@media screen and (max-width: 700px) {
+
+
+
+    /*-------Footer-----------*/
+    .home {
+        height: 50vh;
+        color: white;
+    }
+
+    footer .content {
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+
+    .actualite {
+        background: rgb(225, 222, 222);
+        padding: 20px;
+        margin-top: 50px;
+    }
+
+    .actualite .bottom .card {
+        width: 100%;
+        max-height: 800px;
+        min-height: 260px;
+        margin-bottom: 20px;
+        text-align: justify;
+    }
+
+    .actualite .bottom .card .card-body h5.card-title.act {
+        font-size: 20px;
+        text-align: left;
+    }
+
+    .actualite .top {
+        margin-bottom: 20px;
+    }
+
+    .actualite .top h3 {
+        font-size: 25px;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    .actualite .bottom .card img {
+        max-width: 320px;
+        min-width: 320px;
+        max-height: 300px;
+        transition: 0.5s;
+
+    }
+
+
+    /*-------Footer-----------*/
+
+}
+
+
+@media screen and (max-width: 570px) {
+
+    /*-------navbar-----------*/
+    .text-green {
+        font-size: 17px;
+        margin-right: 0px;
+        font-weight: 900;
+        margin-left: 10px;
+        text-align: center;
+    }
+
+    .navbar {
+        padding: 5px;
+    }
+
+    .flex {
+        display: inline-block;
+        justify-content: space-around;
+    }
+
+    .nav-item {
+        margin-right: 0px;
+    }
+
+    .navbar-light .navbar-toggler-icon {
+        margin-right: 5px;
+    }
+
+    /*-------navbar-----------*/
+
+    /*_______home-------------*/
+    .home {
+        height: 50vh;
+        color: white;
+    }
+
+    .home .caption p {
+        font-size: 15px;
+        margin: 0px 0 10px;
+    }
+
+    .home .caption {
+        width: 100%;
+    }
+
+
+    .home .caption h1 {
+        font-size: 25px;
+        margin: 0;
+        margin-bottom: 5px;
+    }
+
+    /*-------home-------------*/
+    .middle .top h3 {
+        text-align: center;
+        width: 100%;
+        font-size: 18px;
+        margin-bottom: 0px;
+    }
+
+    .middle {
+        margin: 0 20px;
+    }
+
+    .middle .bottom {
+        margin-top: 25px;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .middle .bottom .card {
+        width: 100%;
+        margin-top: 50px;
+    }
+
+
+
+    h5.card-title {
+        margin-bottom: 15px;
+        font-size: 18px;
+        line-height: 25px;
+    }
+
+    /*-------middle-----------*/
+    /*-------actualite-----------*/
+    .actualite {
+        background: rgb(225, 222, 222);
+        padding: 20px;
+        margin-top: 50px;
+    }
+
+    .actualite .bottom .card {
+        width: 100%;
+        max-height: 500px;
+        min-height: 650px;
+        margin-bottom: 20px;
+    }
+
+    .actualite .bottom .card .card-body h5.card-title.act {
+        font-size: 20px;
+        text-align: center;
+    }
+
+    .actualite .top {
+        margin-bottom: 20px;
+    }
+
+    .actualite .top h3 {
+        font-size: 25px;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    .actualite .bottom .card img {
+        max-width: 450px;
+        min-width: 100%;
+        max-height: 250px;
+        transition: 0.5s;
+        height: 100%;
+    }
+
+    .actualite .bottom .card img:hover {
+        transform: scale(1.1);
+    }
+
+    .actualite .bottom .card .card-body p.publication {
+        color: grey;
+        font-size: 15px;
+    }
+
+    .no {
+        background-color: white;
+        color: red;
+        padding: 30px;
+        text-align: center;
+    }
+
+    /*----------actualite------*/
+    /*-------Footer-----------*/
+    /*----------contact------*/
+    .full {
+        max-width: 960px;
+        margin: 0 auto;
+        margin-bottom: 30px;
+    }
+
+    .Contact-Form {
+        height: 50vh;
+        width: 100%;
+        padding-left: 20px;
+        text-align: center;
+        margin-top: 50px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .Contact-Form h2 {
+        color: #ffffff;
+        text-transform: capitalize;
+        margin-bottom: 20px;
+        font-size: 22px;
+    }
+
+    .Contact-Form p {
+        color: #9999B9;
+        margin-bottom: 20px;
+    }
+
+    .input-fields {
+        width: 100%;
+        float: left;
+        overflow: visible;
+        margin-right: 0px;
+        margin-top: 50px;
+        padding-right: 30px;
+    }
+
+    .input-fields input {
+        width: 100%;
+        padding: 10px 15px;
+        margin-bottom: 20px;
+        border-radius: 5px;
+        border: 1px solid black;
+    }
+
+    .msg {
+        width: 100%;
+        overflow: visible;
+        margin-top: 20px;
+        padding-right: 30px;
+    }
+
+    .msg textarea {
+        width: 100%;
+        padding: 10px 20px;
+        margin-bottom: 20px;
+        height: 120px;
+        border-radius: 5px;
+        resize: none;
+        border: 1px solid black;
+    }
+
+    .Contact-Form button {
+        width: 92%;
+        padding: 15px 20px;
+        color: #ffffff;
+        text-transform: uppercase;
+        border: 1px solid black;
+        background: green;
+        cursor: pointer;
+        border-radius: 3px;
+        margin-right: 0px;
+        margin-top: 0px;
+        transition: 1s ease-in-out;
+    }
+
+    .Contact-Form button:hover {
+        border: 1px solid black;
+        background: white;
+        color: green;
+    }
+
+    footer .content {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        padding: 20px;
+    }
+
+
+    footer {
+        width: 100%;
+        overflow: hidden;
+    }
+
+    footer .content {
+        grid-template-columns: repeat(1, 1fr);
+        width: 100%;
+        overflow: hidden;
+    }
+
+
+    footer .content .box {
+        margin-right: 0px;
+        overflow: hidden;
+    }
+
+    footer .content .box h3 {
+        margin-right: 0px;
+    }
 
     /*-------Footer-----------*/
 
@@ -1195,25 +2011,92 @@ strong {
     }
 
 
-}
+    .content-about {
+        width: 100%;
+        height: 100%;
+        background-color: rgb(210, 204, 204);
+        color: green;
+    }
 
-@media screen and (max-width: 1280px) {
+    /* .content-about .right {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    } */
 
-    /*_______home-------------*/
-    .home {
-        height: 65vh;
-        color: white;
+    .descript {
+        color: black;
+        text-align: justify;
+        font-size: 17px;
+        margin-top: 420px;
+    }
+
+    .right {
+        width: 90%;
+        padding: 20px;
+    }
+
+    .right h1 {
+        font-size: 4vw;
+        line-height: 4.4vw;
+        margin-top: 20px;
+    }
+
+
+    .right p {
+        font-size: 17px;
+        font-weight: 600;
+        color: black;
+        width: 80%;
+        margin-top: 1vw;
+        margin-bottom: 0vw;
+        text-align: justify;
+        line-height: 20px;
+    }
+
+    .right p.bottom {
+        margin-bottom: 2vw;
+    }
+
+    .left {
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .left img {
+        margin-top: 150px;
+        height: 100%;
+        width: 100%;
+        object-fit: contain;
+    }
+
+
+    .icon {
+        display: flex;
+        gap: 20px;
+    }
+
+    .icon img {
+        height: 32px;
+        width: 32px;
+        object-fit: contain;
+        cursor: pointer;
+    }
+
+    .icon img:hover {
+        /* filter: grayscale(1); */
+        filter: blur(0.5px);
     }
 
 }
 
-@media screen and (max-width: 700px) {
-    /*-------Footer-----------*/
-
-    footer .content {
-        grid-template-columns: repeat(1, 1fr);
+@media screen and (max-width:360px) {
+    .actualite .bottom .card {
+        width: 100%;
+        max-height: 500px;
+        min-height: 700px;
+        margin-bottom: 20px;
     }
-
-    /*-------Footer-----------*/
-
 }

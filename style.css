@@ -1848,7 +1848,7 @@ strong {
     }
 
     .actualite .bottom .card img {
-        max-width: 350px;
+        max-width: 340px;
         min-width: 340px;
         max-height: 250px;
         transition: 0.5s;

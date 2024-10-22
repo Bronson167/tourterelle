@@ -2086,6 +2086,7 @@ strong {
         line-height: 4.4vw;
         margin-top: 20px;
         margin-bottom: 20px;
+        font-weight: 900;
     }
 
 
@@ -2097,7 +2098,7 @@ strong {
         margin-top: 1vw;
         margin-bottom: 10px;
         text-align: justify;
-        line-height: 20px;
+        line-height: 25px;
     }
 
     .right p.bottom {
@@ -2145,7 +2146,7 @@ strong {
 
     .mission .content-mission ol {
         margin-top: 30px;
-        margin-left: 10px;
+        margin-left: 0px;
         text-align: justify;
     }
 
@@ -2156,7 +2157,7 @@ strong {
     }
 
     .publier .content-admission .piece {
-        margin-left: 10px;
+        margin-left: 0px;
         margin-top: 20px;
     }
 

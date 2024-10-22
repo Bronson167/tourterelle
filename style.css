@@ -1829,6 +1829,7 @@ strong {
         max-height: 500px;
         min-height: 650px;
         margin-bottom: 20px;
+        text-align: left;
     }
 
     .actualite .bottom .card .card-body h5.card-title.act {
@@ -1847,8 +1848,8 @@ strong {
     }
 
     .actualite .bottom .card img {
-        max-width: 400px;
-        min-width: 400px;
+        max-width: 300px;
+        min-width: 100px;
         max-height: 250px;
         transition: 0.5s;
         height: 100%;

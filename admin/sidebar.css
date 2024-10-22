@@ -205,4 +205,119 @@ a.sidebar-link button {
         margin-bottom: 40px;
         margin-top: 40px;
     }
+
+
+    .main-side {
+        min-height: 40vh;
+        width: 100%;
+    }
+
+    #sidebar {
+        width: 40px;
+        min-width: 40px;
+        z-index: 1000;
+    }
+
+    #sidebar.expand {
+        width: 260px;
+        min-width: 260px;
+    }
+
+    .toggle-btn {
+        background-color: transparent;
+        cursor: pointer;
+        border: 0;
+        padding: 0.5rem 1rem;
+    }
+
+    .toggle-btn i {
+        font-size: 1rem;
+        color: #FFF;
+    }
+
+    .sidebar-logo {
+        margin: auto 0;
+    }
+
+    .sidebar-logo a {
+        color: #FFF;
+        font-size: 1.5rem;
+        font-weight: 600;
+    }
+
+    #sidebar:not(.expand) .sidebar-logo,
+    #sidebar:not(.expand) a.sidebar-link span {
+        display: none;
+    }
+
+    .sidebar-nav {
+        padding: 1rem 0;
+        padding-bottom: 0;
+        flex: 1 1 auto;
+    }
+
+    a.sidebar-link {
+        padding: .625rem 0.75rem;
+        color: #FFF;
+        display: block;
+        font-size: 0.9rem;
+        white-space: nowrap;
+        border-left: 3px solid transparent;
+    }
+
+    .sidebar-link i {
+        font-size: 0.75rem;
+        margin-right: .75rem;
+    }
+
+
+    #sidebar:not(.expand) .sidebar-item .sidebar-dropdown {
+        position: absolute;
+        top: 0;
+        left: 40px;
+        background-color: green;
+        padding: 0;
+        min-width: 10rem;
+        display: none;
+    }
+
+    #sidebar:not(.expand) .sidebar-item:hover .has-dropdown+.sidebar-dropdown {
+        display: block;
+        max-height: 15em;
+        width: 100%;
+        opacity: 1;
+    }
+
+    #sidebar.expand .sidebar-link[data-bs-toggle="collapse"]::after {
+        border: solid;
+        border-width: 0 .075rem .075rem 0;
+        content: "";
+        display: inline-block;
+        padding: 2px;
+        position: absolute;
+        right: 1.5rem;
+        top: 1.4rem;
+        transform: rotate(-135deg);
+        transition: all .2s ease-out;
+    }
+
+    #sidebar.expand .sidebar-link[data-bs-toggle="collapse"].collapsed::after {
+        transform: rotate(45deg);
+        transition: all .2s ease-out;
+    }
+
+    .desc {
+        padding: 20px;
+        /* width: 90%; */
+        margin-left: 10px;
+        margin-right: 10px;
+        border: 3px solid black;
+        margin-top: 10px;
+    }
+
+    .description {
+        text-align: justify;
+    }
+
+
 }

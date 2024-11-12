@@ -280,6 +280,7 @@
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
         import { getFirestore, doc, getDoc, updateDoc } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js";
 
+        import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-storage.js";
 
         const firebaseConfig = {
             apiKey: "AIzaSyBX_g_LMjwihaLYswXz6nr3Pqio9u7OwkI",
@@ -294,6 +295,7 @@
 
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
+        const storage = getStorage(app);
 
         const urlParams = new URLSearchParams(window.location.search);
         const articleId = urlParams.get('id');
@@ -316,17 +318,42 @@
 
         document.getElementById('modifyForm').addEventListener('submit', async (e) => {
             e.preventDefault();
+            console.log("Form submited");
             const title = document.getElementById('title').value;
             const content = document.getElementById('content').value;
+            const imageFile = document.getElementById('image').files[0];
             const articleRef = doc(db, 'articles', articleId);
 
+            // Récupérer l'article actuel pour conserver l'ancienne image si nécessaire
+            const articleDoc = await getDoc(articleRef);
+            const currentImageUrl = articleDoc.exists() ? articleDoc.data().imageUrl : null;
+
+            let imageUrl = currentImageUrl; // Par défaut, on garde l'ancienne image
+
+            // Si une nouvelle image est sélectionnée, on la télécharge et on met à jour l'URL
+            if (imageFile) {
+                const allowedTypes = ['image/jpeg', 'image/png'];
+                console.log("Image selected");
+                if (!allowedTypes.includes(imageFile.type)) {
+                    alert('Veuillez télécharger une image au format JPG, JPEG ou PNG.');
+                    return;
+                }
+
+                const imageRef = ref(storage, `images/${imageFile.name}`);
+                await uploadBytes(imageRef, imageFile);
+                imageUrl = await getDownloadURL(imageRef); // On met à jour l'URL de l'image
+            }
+
+            // Mettre à jour l'article avec le nouveau titre, contenu, et image (si modifiée)
             await updateDoc(articleRef, {
                 title: title,
-                content: content
+                content: content,
+                imageUrl: imageUrl // On utilise l'ancienne image si aucune nouvelle image n'est sélectionnée
             });
 
             alert('Article modifié avec succès !');
         });
+
 
         loadArticle();
     </script>

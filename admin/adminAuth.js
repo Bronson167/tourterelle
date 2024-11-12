@@ -1,10 +1,11 @@
+
 document.getElementById('loginForm').addEventListener('submit', function (e) {
     e.preventDefault();
 
     const password = document.getElementById('password').value;
     const email = document.getElementById('email').value;
     const correctEmail = 'institutionmixtelatourterelle@gmail.com';
-    const correctPassword = 'latourterelle'; // Remplacez par votre mot de passe
+    const correctPassword = 'la@tourterelle'; // Remplacez par votre mot de passe
 
     document.getElementById('message').style.display = 'none';
 

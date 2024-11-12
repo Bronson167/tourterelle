@@ -76,7 +76,10 @@ html {
 }
 
 .home .slide:nth-child(1) {
-    background-image: url('./images/h1.jpg');
+    /* background-image: url('./images/tout/IMG-20241108-WA0004.jpg'); */
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('./images//tout/IMG-20241108-WA0004.jpg');
+    background-size: cover;
+    background-position: center;
 }
 
 .home .slide:nth-child(2) {
@@ -246,12 +249,14 @@ html {
 }
 
 .middle .bottom .card {
-    width: 370px;
+    width: 360px;
+    /* border: 1px solid black; */
 }
 
 .middle .bottom .card img {
     background-color: yellow;
     height: 170px;
+    width: 100%;
 }
 
 
@@ -1843,7 +1848,7 @@ strong {
     .actualite .bottom .card {
         width: 100%;
         max-height: 500px;
-        min-height: 650px;
+        min-height: 610px;
         margin-bottom: 20px;
         text-align: left;
     }

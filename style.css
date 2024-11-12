@@ -139,12 +139,14 @@ html {
     font-size: 15px;
     margin: 15px 0 30px;
     font-size: 20px;
+    text-align: center;
 }
 
 .home .caption h1 {
     font-size: 45px;
     margin: 0;
     font-weight: bold;
+    margin-bottom: 15px;
 }
 
 .home .slide.active .caption h1 {
@@ -1644,7 +1646,7 @@ strong {
 
     .actualite .bottom .card {
         width: 100%;
-        max-height: 500px;
+        max-height: 670px;
         min-height: 650px;
         margin-bottom: 20px;
     }
@@ -2223,7 +2225,7 @@ p {
 @media screen and (max-width:360px) {
     .actualite .bottom .card {
         width: 100%;
-        max-height: 500px;
+        max-height: 670px;
         min-height: 700px;
         margin-bottom: 20px;
     }

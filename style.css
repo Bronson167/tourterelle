@@ -277,6 +277,7 @@ p.card-text {
     font-family: Georgia, 'Times New Roman', Times, serif;
     font-size: 16px;
     margin-bottom: 0px;
+    text-align: justify;
 }
 
 /*-------middle-----------*/

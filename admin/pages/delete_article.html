@@ -266,46 +266,59 @@
 
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
+        import { getAuth } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
+        const auth = getAuth();
+        const user = auth.currentUser;
+        const userId = localStorage.getItem('userId');
 
-        async function loadArticles() {
-            const articleList = document.getElementById('articleList');
-            const querySnapshot = await getDocs(collection(db, 'articles'));
+        if (userId) {
 
-            querySnapshot.forEach((doc) => {
-                const article = doc.data();
-                const li = document.createElement('li');
-                li.classList.add('list-group-item');
-                li.innerHTML = `
+
+            async function loadArticles() {
+                const articleList = document.getElementById('articleList');
+                const querySnapshot = await getDocs(collection(db, 'articles'));
+
+                querySnapshot.forEach((doc) => {
+                    const article = doc.data();
+                    const li = document.createElement('li');
+                    li.classList.add('list-group-item');
+                    li.innerHTML = `
                     <div>
                     <strong>${article.title}</strong><br>
                     ${article.content.substring(0, 100)}...
                     </div>
                     <button class="btn btn-danger btn-sm modify-btn" onclick="confirmDelete('${doc.id}')">Supprimer</button>
                 `;
-                articleList.appendChild(li);
-            });
-        }
-
-        function confirmDelete(articleId) {
-            const confirmation = confirm("Êtes-vous sûr de vouloir supprimer cet article ?");
-            if (confirmation) {
-                deleteArticle(articleId);
+                    articleList.appendChild(li);
+                });
             }
-        }
 
-        async function deleteArticle(articleId) {
-            try {
-                await deleteDoc(doc(db, 'articles', articleId));
-                alert('Article supprimé avec succès !');
-                location.reload(); // Recharge la page pour mettre à jour la liste
-            } catch (error) {
-                console.error('Erreur lors de la suppression de l\'article :', error);
-                alert('Erreur lors de la suppression de l\'article.');
+            function confirmDelete(articleId) {
+                const confirmation = confirm("Êtes-vous sûr de vouloir supprimer cet article ?");
+                if (confirmation) {
+                    deleteArticle(articleId);
+                }
             }
+
+
+            async function deleteArticle(articleId) {
+                try {
+                    await deleteDoc(doc(db, 'articles', articleId));
+                    alert('Article supprimé avec succès !');
+                    location.reload(); // Recharge la page pour mettre à jour la liste
+                } catch (error) {
+                    console.error('Erreur lors de la suppression de l\'article :', error);
+                    alert('Erreur lors de la suppression de l\'article.');
+                }
+            }
+
+            window.confirmDelete = confirmDelete; // Rendre la fonction accessible globalement
+            loadArticles();
+        } else {
+            console.log("Aucun utilisateur authentifié");
+
         }
 
-        window.confirmDelete = confirmDelete; // Rendre la fonction accessible globalement
-        loadArticles();
     </script>
 
     <script>

@@ -263,29 +263,35 @@
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
 
+        import { getAuth } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
+        const auth = getAuth();
+        const user = auth.currentUser;
+        const userId = localStorage.getItem('userId');
 
-        async function loadContacts() {
-            const contactCollection = collection(db, 'contact');
-            const contactSnapshot = await getDocs(contactCollection);
-            const contactList = document.getElementById('contactList');
+        if (userId) {
+
+            async function loadContacts() {
+                const contactCollection = collection(db, 'contact');
+                const contactSnapshot = await getDocs(contactCollection);
+                const contactList = document.getElementById('contactList');
 
 
 
 
-            contactSnapshot.forEach(doc => {
-                const contact = doc.data();
-                const timestamp = contact.published;
-                const timestampSeconds = timestamp.seconds;
-                const timestampNanoseconds = timestamp.nanoseconds;
+                contactSnapshot.forEach(doc => {
+                    const contact = doc.data();
+                    const timestamp = contact.published;
+                    const timestampSeconds = timestamp.seconds;
+                    const timestampNanoseconds = timestamp.nanoseconds;
 
-                const date = new Date((timestampSeconds * 1000) + (timestampNanoseconds / 1_000_000));
+                    const date = new Date((timestampSeconds * 1000) + (timestampNanoseconds / 1_000_000));
 
-                const options = { day: '2-digit', month: 'short', year: 'numeric' };
-                const formattedDate = date.toLocaleDateString('en-GB', options).replace(/ /g, ' ');
+                    const options = { day: '2-digit', month: 'short', year: 'numeric' };
+                    const formattedDate = date.toLocaleDateString('en-GB', options).replace(/ /g, ' ');
 
-                const listItem = document.createElement('div');
-                listItem.className = 'list-group-item d-flex justify-content-between align-items-center';
-                listItem.innerHTML = `
+                    const listItem = document.createElement('div');
+                    listItem.className = 'list-group-item d-flex justify-content-between align-items-center';
+                    listItem.innerHTML = `
                     <div>
                         <strong>${contact.name}</strong><br>
                         <p class="email-contact"><em>${contact.email}</em></p>
@@ -300,32 +306,36 @@
                     <button class="btn btn-danger btn-sm delete-btn" data-id="${doc.id}" onclick="confirmDelete('${doc.id}')">Supprimer</button>
 
                 `;
-                contactList.appendChild(listItem);
-            });
+                    contactList.appendChild(listItem);
+                });
 
-        }
-
-        loadContacts();
-
-        function confirmDelete(contactId) {
-            const confirmation = confirm("Êtes-vous sûr de vouloir supprimer cet article ?");
-            if (confirmation) {
-                deleteContact(contactId);
             }
-        }
 
+            loadContacts();
 
-        async function deleteContact(contactId) {
-            try {
-                await deleteDoc(doc(db, 'contact', contactId));
-                alert('Message supprimé avec succès !');
-                location.reload(); // Recharge la page pour mettre à jour la liste
-            } catch (error) {
-                console.error('Erreur lors de la suppression du message :', error);
-                alert('Erreur lors de la suppression du message.');
+            function confirmDelete(contactId) {
+                const confirmation = confirm("Êtes-vous sûr de vouloir supprimer cet article ?");
+                if (confirmation) {
+                    deleteContact(contactId);
+                }
             }
+
+
+            async function deleteContact(contactId) {
+                try {
+                    await deleteDoc(doc(db, 'contact', contactId));
+                    alert('Message supprimé avec succès !');
+                    location.reload(); // Recharge la page pour mettre à jour la liste
+                } catch (error) {
+                    console.error('Erreur lors de la suppression du message :', error);
+                    alert('Erreur lors de la suppression du message.');
+                }
+            }
+            window.confirmDelete = confirmDelete;
+        } else {
+            console.log("Aucun utilisateur authentifié");
+
         }
-        window.confirmDelete = confirmDelete;
     </script>
     <!-- jQuery and Bootstrap JS -->
 </body>

@@ -312,47 +312,62 @@
         const db = getFirestore(app);
         const storage = getStorage(app);
 
-        document.getElementById('articleForm').addEventListener('submit', async (e) => {
-            e.preventDefault();
+        import { getAuth } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
+        const auth = getAuth();
+        const user = auth.currentUser;
+        const userId = localStorage.getItem('userId');
 
-            const title = document.getElementById('title').value;
-            const content = document.getElementById('content').value;
-            const imageFile = document.getElementById('image').files[0];
+        if (userId) {
+            console.log("L'utilisateur est authentifié", user);
 
-            // Vérification des champs
-            if (!title || !content || !imageFile) {
-                alert('Veuillez remplir tous les champs.');
-                return;
-            }
 
-            // Vérifier le type d'image
-            const allowedTypes = ['image/jpeg', 'image/png'];
-            if (!allowedTypes.includes(imageFile.type)) {
-                alert('Veuillez télécharger une image au format JPG, JPEG ou PNG.');
-                return;
-            }
 
-            // Télécharger l'image
-            const imageRef = ref(storage, `images/${imageFile.name}`);
-            try {
-                await uploadBytes(imageRef, imageFile);
-                const imageUrl = await getDownloadURL(imageRef);
+            document.getElementById('articleForm').addEventListener('submit', async (e) => {
+                e.preventDefault();
 
-                // Enregistrer l'article dans Firestore
-                await addDoc(collection(db, 'articles'), {
-                    title: title,
-                    content: content,
-                    imageUrl: imageUrl,
-                    createdAt: serverTimestamp() // Utiliser serverTimestamp ici
-                });
+                const title = document.getElementById('title').value;
+                const content = document.getElementById('content').value;
+                const imageFile = document.getElementById('image').files[0];
 
-                alert('Article publié avec succès !');
-                document.getElementById('articleForm').reset();
-                document.getElementById('wordCount').textContent = '0/55 mots'; // Réinitialiser le compteur de mots
-            } catch (error) {
-                console.error('Erreur lors de l\'ajout de l\'article :', error);
-            }
-        });
+                // Vérification des champs
+                if (!title || !content || !imageFile) {
+                    alert('Veuillez remplir tous les champs.');
+                    return;
+                }
+
+                // Vérifier le type d'image
+                const allowedTypes = ['image/jpeg', 'image/png'];
+                if (!allowedTypes.includes(imageFile.type)) {
+                    alert('Veuillez télécharger une image au format JPG, JPEG ou PNG.');
+                    return;
+                }
+
+                // Télécharger l'image
+                const imageRef = ref(storage, `images/${imageFile.name}`);
+                try {
+                    await uploadBytes(imageRef, imageFile);
+                    const imageUrl = await getDownloadURL(imageRef);
+
+                    // Enregistrer l'article dans Firestore
+                    await addDoc(collection(db, 'articles'), {
+                        title: title,
+                        content: content,
+                        imageUrl: imageUrl,
+                        createdAt: serverTimestamp() // Utiliser serverTimestamp ici
+                    });
+
+                    alert('Article publié avec succès !');
+                    document.getElementById('articleForm').reset();
+                    document.getElementById('wordCount').textContent = '0/55 mots'; // Réinitialiser le compteur de mots
+                } catch (error) {
+                    console.error('Erreur lors de l\'ajout de l\'article :', error);
+                }
+            });
+        } else {
+            console.log("Aucun utilisateur authentifié");
+            // Si nécessaire, redirigez l'utilisateur vers la page de connexion
+            //window.location.href = '/login.html';  // redirige vers la page de connexion
+        }
     </script>
 
     <script>

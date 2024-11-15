@@ -192,7 +192,7 @@
                     <div>
                         <ul class="contact">
                             <li>
-                                <a href="../../index.html">Acceuil</a>
+                                <a href="../../index.html">Accueil</a>
                             </li>
                             <li>
                                 <a href="#">
@@ -242,7 +242,7 @@
                     <ul class="contact">
                         <li>institutionmixtelatourterelle@gmail.com</li>
                         <li>institutionmixteetoiledor@gmail.com</li>
-                        <li>(509) 3414-0059 | (509) 3752-2687</li>
+                        <li>(509) 3414-0050 | (509) 3752-2687</li>
                     </ul>
                 </div>
                 <div class="box">
@@ -300,62 +300,72 @@
         const urlParams = new URLSearchParams(window.location.search);
         const articleId = urlParams.get('id');
 
-        console.log(urlParams)
+        import { getAuth } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
+        const auth = getAuth();
+        const user = auth.currentUser;
+        const userId = localStorage.getItem('userId');
 
-        async function loadArticle() {
-            const articleRef = doc(db, 'articles', articleId);
-            const articleSnap = await getDoc(articleRef);
+        if (userId) {
 
-            if (articleSnap.exists()) {
-                const article = articleSnap.data();
-                document.getElementById('articleId').value = articleId;
-                document.getElementById('title').value = article.title;
-                document.getElementById('content').value = article.content;
-            } else {
-                console.log("Aucun document trouvé !");
+            async function loadArticle() {
+                const articleRef = doc(db, 'articles', articleId);
+                const articleSnap = await getDoc(articleRef);
+
+                if (articleSnap.exists()) {
+                    const article = articleSnap.data();
+                    document.getElementById('articleId').value = articleId;
+                    document.getElementById('title').value = article.title;
+                    document.getElementById('content').value = article.content;
+                } else {
+                    console.log("Aucun document trouvé !");
+                }
             }
-        }
 
-        document.getElementById('modifyForm').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            console.log("Form submited");
-            const title = document.getElementById('title').value;
-            const content = document.getElementById('content').value;
-            const imageFile = document.getElementById('image').files[0];
-            const articleRef = doc(db, 'articles', articleId);
+            document.getElementById('modifyForm').addEventListener('submit', async (e) => {
+                e.preventDefault();
+                console.log("Form submited");
+                const title = document.getElementById('title').value;
+                const content = document.getElementById('content').value;
+                const imageFile = document.getElementById('image').files[0];
+                const articleRef = doc(db, 'articles', articleId);
 
-            // Récupérer l'article actuel pour conserver l'ancienne image si nécessaire
-            const articleDoc = await getDoc(articleRef);
-            const currentImageUrl = articleDoc.exists() ? articleDoc.data().imageUrl : null;
+                // Récupérer l'article actuel pour conserver l'ancienne image si nécessaire
+                const articleDoc = await getDoc(articleRef);
+                const currentImageUrl = articleDoc.exists() ? articleDoc.data().imageUrl : null;
 
-            let imageUrl = currentImageUrl; // Par défaut, on garde l'ancienne image
+                let imageUrl = currentImageUrl; // Par défaut, on garde l'ancienne image
 
-            // Si une nouvelle image est sélectionnée, on la télécharge et on met à jour l'URL
-            if (imageFile) {
-                const allowedTypes = ['image/jpeg', 'image/png'];
-                console.log("Image selected");
-                if (!allowedTypes.includes(imageFile.type)) {
-                    alert('Veuillez télécharger une image au format JPG, JPEG ou PNG.');
-                    return;
+                // Si une nouvelle image est sélectionnée, on la télécharge et on met à jour l'URL
+                if (imageFile) {
+                    const allowedTypes = ['image/jpeg', 'image/png'];
+                    console.log("Image selected");
+                    if (!allowedTypes.includes(imageFile.type)) {
+                        alert('Veuillez télécharger une image au format JPG, JPEG ou PNG.');
+                        return;
+                    }
+
+                    const imageRef = ref(storage, `images/${imageFile.name}`);
+                    await uploadBytes(imageRef, imageFile);
+                    imageUrl = await getDownloadURL(imageRef); // On met à jour l'URL de l'image
                 }
 
-                const imageRef = ref(storage, `images/${imageFile.name}`);
-                await uploadBytes(imageRef, imageFile);
-                imageUrl = await getDownloadURL(imageRef); // On met à jour l'URL de l'image
-            }
+                // Mettre à jour l'article avec le nouveau titre, contenu, et image (si modifiée)
+                await updateDoc(articleRef, {
+                    title: title,
+                    content: content,
+                    imageUrl: imageUrl // On utilise l'ancienne image si aucune nouvelle image n'est sélectionnée
+                });
 
-            // Mettre à jour l'article avec le nouveau titre, contenu, et image (si modifiée)
-            await updateDoc(articleRef, {
-                title: title,
-                content: content,
-                imageUrl: imageUrl // On utilise l'ancienne image si aucune nouvelle image n'est sélectionnée
+                alert('Article modifié avec succès !');
             });
+            loadArticle();
+        } else {
+            console.log("Aucun utilisateur authentifié");
 
-            alert('Article modifié avec succès !');
-        });
+        }
 
 
-        loadArticle();
+
     </script>
 </body>
 

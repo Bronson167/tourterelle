@@ -32,7 +32,7 @@ async function addArticle() {
             imageUrl: 'URL_DE_L_IMAGE',
             createdAt: firebase.firestore.FieldValue.serverTimestamp()
         });
-        console.log('Article ajouté avec succès !');
+
     } catch (error) {
         console.error('Erreur lors de l\'ajout de l\'article :', error);
     }

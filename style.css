@@ -759,6 +759,10 @@ body {
 /* Responsive Code */
 
 @media (max-width: 700px) {
+    .nav-about {
+        margin-left: 0px;
+    }
+
     .navbar-collapse ul {
         display: flex;
         justify-content: center;

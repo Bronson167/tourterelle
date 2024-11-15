@@ -318,8 +318,6 @@
         const userId = localStorage.getItem('userId');
 
         if (userId) {
-            console.log("L'utilisateur est authentifié", user);
-
 
 
             document.getElementById('articleForm').addEventListener('submit', async (e) => {
@@ -365,8 +363,7 @@
             });
         } else {
             console.log("Aucun utilisateur authentifié");
-            // Si nécessaire, redirigez l'utilisateur vers la page de connexion
-            //window.location.href = '/login.html';  // redirige vers la page de connexion
+
         }
     </script>
 

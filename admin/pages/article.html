@@ -62,7 +62,7 @@
     <div class="banner-top"></div>
 
     <div class="wrapper-admin">
-        <aside id="sidebar">
+        <!-- <aside id="sidebar">
             <div class="d-flex">
                 <button class="toggle-btn" type="button">
                     <i class="lni lni-grid-alt"></i>
@@ -72,7 +72,7 @@
                 </div>
             </div>
             <ul class="sidebar-nav">
-                <li class="sidebar-item" title="Cette fonctionnalite n'est pas disponible pour le moment.">
+                <li class="sidebar-item" title="Cette fonctionnalité n'est pas disponible pour le moment.">
                     <a href="#" class="sidebar-link collapsed has-dropdown desabled" data-bs-toggle="collapse"
                         data-bs-target="#auth" aria-expanded="false" aria-controls="auth" class="desabled">
                         <i class="lni lni-user"></i>
@@ -85,15 +85,6 @@
                         <i class="fa-solid fa-newspaper"></i>
                         <span>Publier</span>
                     </a>
-                    <ul id="multi" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
-                        <li class="sidebar-item">
-                            <a href="./article.html" class="sidebar-link collapsed" data-bs-toggle="collapse"
-                                data-bs-target="#multi-two" aria-expanded="false" aria-controls="multi-two">
-                                <button>Publier</button>
-                            </a>
-
-                        </li>
-                    </ul>
                 </li>
 
                 <li class="sidebar-item">
@@ -102,38 +93,14 @@
                         <i class="fa-solid fa-pen"></i>
                         <span>Modifier</span>
                     </a>
-                    <ul id="multi" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
-                        <li class="sidebar-item">
-                            <a href="./modify.html" class="sidebar-link collapsed" data-bs-toggle="collapse"
-                                data-bs-target="#multi-two" aria-expanded="false" aria-controls="multi-two">
-                                <button>Modifier</button>
-                            </a>
-                            <!-- <ul id="multi-two" class="sidebar-dropdown list-unstyled collapse">
-                                <li class="sidebar-item">
-                                    <a href="#" class="sidebar-link">Link 1</a>
-                                </li>
-                                <li class="sidebar-item">
-                                    <a href="#" class="sidebar-link">Link 2</a>
-                                </li>
-                            </ul> -->
-                        </li>
-                    </ul>
                 </li>
+
                 <li class="sidebar-item">
                     <a href="./delete_article.html" class="sidebar-link collapsed has-dropdown"
                         data-bs-toggle="collapse" data-bs-target="#multi" aria-expanded="false" aria-controls="multi">
                         <i class="fa-solid fa-trash"></i>
                         <span>Supprimer</span>
                     </a>
-                    <ul id="multi" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
-                        <li class="sidebar-item">
-                            <a href="./delete_article.html" class="sidebar-link collapsed" data-bs-toggle="collapse"
-                                data-bs-target="#multi-two" aria-expanded="false" aria-controls="multi-two">
-                                <button>Supprimer</button>
-                            </a>
-
-                        </li>
-                    </ul>
                 </li>
 
                 <li class="sidebar-item">
@@ -142,28 +109,16 @@
                         <i class="fa-solid fa-message"></i>
                         <span>Messages</span>
                     </a>
-                    <ul id="multi" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
-                        <li class="sidebar-item">
-                            <a href="./message.html" class="sidebar-link collapsed" data-bs-toggle="collapse"
-                                data-bs-target="#multi-two" aria-expanded="false" aria-controls="multi-two">
-                                <button>Messages</button>
-                            </a>
-
-                        </li>
-                    </ul>
                 </li>
 
-                <li class="sidebar-item" title="Cette fonctionnalite n'est pas disponible pour le moment.">
+                <li class="sidebar-item" title="Cette fonctionnalité n'est pas disponible pour le moment.">
                     <a href="#" class="sidebar-link collapsed has-dropdown desabled" data-bs-toggle="collapse" desabled>
                         <i class="lni lni-agenda"></i>
-                        <span>Autres activites</span>
+                        <span>Autres activités</span>
                     </a>
-
                 </li>
 
-
-
-                <li class="sidebar-item" title="Cette fonctionnalite n'est pas disponible pour le moment.">
+                <li class="sidebar-item" title="Cette fonctionnalité n'est pas disponible pour le moment.">
                     <a href="#" class="sidebar-link desabled">
                         <i class="lni lni-cog"></i>
                         <span>Setting</span>
@@ -176,7 +131,7 @@
                     <span>Sortir</span>
                 </a>
             </div>
-        </aside>
+        </aside> -->
 
         <div class="main-side p-3">
             <section class="publier" id="admission">
@@ -209,7 +164,9 @@
                 </div>
             </section>
         </div>
+
     </div>
+    <a href="../admin.html" class="btn btn-primary my-3 back-btn">Retour</a>
 
     <footer>
         <div class="s_container">
@@ -243,23 +200,11 @@
                     <ul class="contact">
                         <li>No. 1 route de meyotte après le pont</li>
                         <li>Pétion ville/Haiti</li>
-                        <!-- <div class="icon">
-                            <i class="fa fa-facebook"></i>
-                            <i class="fa fa-instagram"></i>
-                            <i class="fa fa-twitter"></i>
-                            <i class="fa fa-youtube"></i>
-                        </div> -->
                     </ul>
                     <h3>Institution Mixte Étoile D’or</h3>
                     <ul class="contact">
                         <li>No. 5 Bas Baptiste Impasse Robinson (sur la route de diegue)</li>
                         <li>Pétion ville/Haiti</li>
-                        <!-- <div class="icon">
-                            <i class="fa fa-facebook"></i>
-                            <i class="fa fa-instagram"></i>
-                            <i class="fa fa-twitter"></i>
-                            <i class="fa fa-youtube"></i>
-                        </div> -->
                     </ul>
                 </div>
 
@@ -284,9 +229,30 @@
         </div>
     </footer>
 
-
+    <!-- Modal -->
+    <div class="modal fade" id="alertModal" tabindex="-1" aria-labelledby="alertModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="alertModalLabel">Notification</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="modalMessage"></div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <script>
+        function showModal(message) {
+            const modalMessage = document.getElementById('modalMessage');
+            modalMessage.textContent = message;
+            const modal = new bootstrap.Modal(document.getElementById('alertModal'));
+            modal.show();
+        }
+
         function limitWords(textarea, maxWords) {
             const words = textarea.value.split(/\s+/).filter(Boolean);
             const wordCountDisplay = document.getElementById('wordCount');
@@ -302,18 +268,13 @@
                 wordCountDisplay.textContent = `${words.length}/${maxWords} mots`;
             }
         }
-
     </script>
 
     <script type="module">
-
-
-        // Importer les fonctions nécessaires de Firebase
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
         import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js";
         import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-storage.js";
 
-        // Configuration Firebase
         const firebaseConfig = {
             apiKey: "AIzaSyBX_g_LMjwihaLYswXz6nr3Pqio9u7OwkI",
             authDomain: "tourtterelle-e62c6.firebaseapp.com",
@@ -324,19 +285,15 @@
             measurementId: "G-TD81R40LPD"
         };
 
-        // Initialiser Firebase
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
         const storage = getStorage(app);
-
         import { getAuth } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
         const auth = getAuth();
         const user = auth.currentUser;
         const userId = localStorage.getItem('userId');
 
         if (userId) {
-
-
             document.getElementById('articleForm').addEventListener('submit', async (e) => {
                 e.preventDefault();
 
@@ -344,43 +301,38 @@
                 const content = document.getElementById('content').value;
                 const imageFile = document.getElementById('image').files[0];
 
-                // Vérification des champs
                 if (!title || !content || !imageFile) {
-                    alert('Veuillez remplir tous les champs.');
+                    showModal('Veuillez remplir tous les champs.');
                     return;
                 }
 
-                // Vérifier le type d'image
                 const allowedTypes = ['image/jpeg', 'image/png'];
                 if (!allowedTypes.includes(imageFile.type)) {
-                    alert('Veuillez télécharger une image au format JPG, JPEG ou PNG.');
+                    showModal('Veuillez télécharger une image au format JPG, JPEG ou PNG.');
                     return;
                 }
 
-                // Télécharger l'image
                 const imageRef = ref(storage, `images/${imageFile.name}`);
                 try {
                     await uploadBytes(imageRef, imageFile);
                     const imageUrl = await getDownloadURL(imageRef);
 
-                    // Enregistrer l'article dans Firestore
                     await addDoc(collection(db, 'articles'), {
                         title: title,
                         content: content,
                         imageUrl: imageUrl,
-                        createdAt: serverTimestamp() // Utiliser serverTimestamp ici
+                        createdAt: serverTimestamp()
                     });
 
-                    alert('Article publié avec succès !');
+                    showModal('Article publié avec succès!');
                     document.getElementById('articleForm').reset();
-                    document.getElementById('wordCount').textContent = '0/55 mots'; // Réinitialiser le compteur de mots
+                    document.getElementById('wordCount').textContent = '0/55 mots';
                 } catch (error) {
                     console.error('Erreur lors de l\'ajout de l\'article :', error);
                 }
             });
         } else {
             console.log("Aucun utilisateur authentifié");
-
         }
     </script>
 
@@ -390,14 +342,10 @@
         hamBurger.addEventListener("click", function () {
             document.querySelector("#sidebar").classList.toggle("expand");
         });
-
     </script>
-    <!-- jQuery -->
+
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <!-- Bootstrap JS -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
-
-
 </body>
 
 </html>

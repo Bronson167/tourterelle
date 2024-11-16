@@ -285,6 +285,24 @@
         </div>
     </section>
 
+    <section>
+        <div class="modal" tabindex="-1" id="Mymodal-contact">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalTitle">Message</h5>
+                        <button type="button" class="btn-close" id="close" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p id="modalMessage"></p> <!-- Ici, nous afficherons le message dynamique -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
 
 
     <footer>
@@ -487,6 +505,53 @@
 
 
 
+        //  document.getElementById('contactForm').addEventListener('submit', async (e) => {
+        // e.preventDefault();
+
+        // const name = document.getElementById('name').value;
+        // const email_contact = document.getElementById('email_contact').value;
+        // const phone = document.getElementById('phone').value;
+        // const message = document.getElementById('message-contact').value;
+
+        // // Vérification des champs
+        // if (!name || !email || !phone || !message) {
+        //     showModal('Erreur', 'Veuillez remplir tous les champs.');
+        //     return;
+        // }
+
+
+
+        // try {
+
+
+        //     // Enregistrer le message dans Firestore
+        //     await addDoc(collection(db, 'contact'), {
+        //         email: email_contact,
+        //         message: message,
+        //         name: name,
+        //         phone: phone,
+        //         published: serverTimestamp() // Utiliser serverTimestamp ici
+        //     });
+
+        //     showModal('Message envoyé', 'Votre message a été envoyé avec succès ! Nous vous répondrons dans les plus brefs délais.');
+        //     document.getElementById('contactForm').reset();
+        // } catch (error) {
+
+        // }
+        // });
+
+
+        function showModal(title, message) {
+            // Définir le titre et le message du modal
+            document.getElementById('modalTitle').innerText = title;
+            document.getElementById('modalMessage').innerText = message;
+
+            // Afficher le modal
+            const myModal = new bootstrap.Modal(document.getElementById('Mymodal-contact'));
+            myModal.show();
+        }
+
+        // Gestionnaire d'événements pour la soumission du formulaire
         document.getElementById('contactForm').addEventListener('submit', async (e) => {
             e.preventDefault();
 
@@ -496,16 +561,13 @@
             const message = document.getElementById('message-contact').value;
 
             // Vérification des champs
-            if (!name || !email || !phone || !message) {
-                alert('Veuillez remplir tous les champs.');
+            if (!name || !email_contact || !phone || !message) {
+                // Afficher un message d'erreur si des champs sont vides
+                showModal('Erreur', 'Veuillez remplir tous les champs.');
                 return;
             }
 
-
-
             try {
-
-
                 // Enregistrer le message dans Firestore
                 await addDoc(collection(db, 'contact'), {
                     email: email_contact,
@@ -515,10 +577,14 @@
                     published: serverTimestamp() // Utiliser serverTimestamp ici
                 });
 
-                alert('Message envoyé avec succès !');
+                // Afficher un message de succès si l'envoi a réussi
+                showModal('Message envoyé', 'Votre message a été envoyé avec succès ! Nous vous répondrons dans les plus brefs délais.');
+
+                // Réinitialiser le formulaire
                 document.getElementById('contactForm').reset();
             } catch (error) {
-
+                // Afficher un message d'erreur si l'envoi échoue
+                showModal('Erreur', 'Une erreur est survenue lors de l\'envoi de votre message. Veuillez réessayer plus tard.');
             }
         });
     </script>

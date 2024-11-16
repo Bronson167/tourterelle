@@ -2248,3 +2248,7 @@ strong {
         margin-bottom: 20px;
     }
 }
+
+.back-btn {
+    width: 100%;
+}

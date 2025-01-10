@@ -2250,5 +2250,27 @@ strong {
 }
 
 .back-btn {
-    width: 100%;
+    width: 384vh;
+    margin-left: 20px;
+    /* width: 100%; */
+}
+
+@media screen and (min-width:460px) {
+    .back-btn {
+        width: 55vh;
+        margin-left: 15px;
+    }
+}
+
+@media screen and (min-width:600px) {
+    .back-btn {
+        width: 74vh;
+    }
+}
+
+
+@media screen and (min-width:720px) {
+    .back-btn {
+        width: 90vh;
+    }
 }

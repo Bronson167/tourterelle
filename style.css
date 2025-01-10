@@ -2259,14 +2259,12 @@ strong {
 @media screen and (max-width:720px) {
     .back-btn {
         width: 90vh;
-        margin-left: 15px;
     }
 }
 
 @media screen and (max-width:600px) {
     .back-btn {
-        width: 65vh;
-        margin-left: 15px;
+        width: 74vh;
     }
 }
 

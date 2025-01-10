@@ -2255,10 +2255,10 @@ strong {
     /* width: 100%; */
 }
 
-@media screen and (min-width:460px) {
+
+@media screen and (min-width:720px) {
     .back-btn {
-        width: 55vh;
-        margin-left: 15px;
+        width: 90vh;
     }
 }
 
@@ -2269,8 +2269,10 @@ strong {
 }
 
 
-@media screen and (min-width:720px) {
+
+@media screen and (min-width:460px) {
     .back-btn {
-        width: 90vh;
+        width: 55vh;
+        margin-left: 15px;
     }
 }

@@ -460,43 +460,108 @@
             'Juil', 'Août', 'Sep', 'Oct', 'Nov', 'Déc'
         ];
 
+        // Références aux collections
         const articlesRef = collection(db, 'articles');
-        const q = query(articlesRef, orderBy('createdAt', 'desc'));
+        const videosRef = collection(db, 'videos');
 
-        onSnapshot(q, (snapshot) => {
+        // Requêtes pour récupérer les articles et les vidéos triés par date de publication
+        const qArticles = query(articlesRef, orderBy('createdAt', 'desc'));
+        const qVideos = query(videosRef, orderBy('createdAt', 'desc'));
+
+        // Fonction pour formater la date
+        const formatDate = (date) => {
+            const day = date.getDate();
+            const month = months[date.getMonth()];
+            const year = date.getFullYear();
+            return `${day} ${month}, ${year}`;
+        };
+
+        // Fonction pour afficher les articles et vidéos
+        const displayContent = (contentArray) => {
             articlesContainer.innerHTML = '';
-            snapshot.forEach((doc) => {
-                const article = doc.data();
+            contentArray.forEach((content) => {
+                const { title, content: textContent, imageUrl, videoUrl, createdAt } = content;
+                const date = formatDate(createdAt.toDate());
 
-                // Formatage de la date
-                const date = article.createdAt.toDate(); // Convertir en objet Date
-                const day = date.getDate();
-                const month = months[date.getMonth()];
-                const year = date.getFullYear();
-                const formattedDate = `${day} ${month}, ${year}`;
-
-                // Affichage de l'article dans une carte
-                articlesContainer.innerHTML += `
-                    <div class="card actualite-search">
-                        <div class="row g-0">
-                            <div class="col-md-5 col-sm-5 col-12">
-                                <img src="${article.imageUrl}" class="img-fluid rounded-start" alt="${article.title}">
-                            </div>
-                            <div class="col-md-7 col-sm-7 col-12">
-                                <div class="card-body">
-                                    <p class="publication"><i class="fa-regular fa-calendar-days"></i>
-                                        <small class="text-muted">${formattedDate}</small>
-                                    </p>
-                                    <h5 class="card-title act">${article.title}</h5>
-                                    <p class="card-text">${article.content}</p>
-                                    
-                                </div>
+                // Affichage de l'article ou de la vidéo
+                if (videoUrl) {
+                    articlesContainer.innerHTML += `
+                <div class="card actualite-search">
+                    <div class="row g-0">
+                        <div class="col-md-5 col-sm-5 col-12">
+                            <video controls class="img-fluid rounded-start">
+                                <source src="${videoUrl}" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                        <div class="col-md-7 col-sm-7 col-12">
+                            <div class="card-body">
+                                <p class="publication"><i class="fa-regular fa-calendar-days"></i>
+                                    <small class="text-muted">${date}</small>
+                                </p>
+                                <h5 class="card-title act">${title}</h5>
+                                <p class="card-text">${textContent}</p>
                             </div>
                         </div>
                     </div>
-                `;
+                </div>
+            `;
+                } else {
+                    articlesContainer.innerHTML += `
+                <div class="card actualite-search">
+                    <div class="row g-0">
+                        <div class="col-md-5 col-sm-5 col-12">
+                            <img src="${imageUrl}" class="img-fluid rounded-start" alt="${title}">
+                        </div>
+                        <div class="col-md-7 col-sm-7 col-12">
+                            <div class="card-body">
+                                <p class="publication"><i class="fa-regular fa-calendar-days"></i>
+                                    <small class="text-muted">${date}</small>
+                                </p>
+                                <h5 class="card-title act">${title}</h5>
+                                <p class="card-text">${textContent}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+                }
+            });
+        };
+
+        // Récupérer les articles
+        onSnapshot(qArticles, (snapshot) => {
+            const articlesArray = [];
+            snapshot.forEach((doc) => {
+                const article = doc.data();
+                articlesArray.push({
+                    ...article,
+                    createdAt: article.createdAt
+                });
+            });
+
+            // Récupérer les vidéos
+            onSnapshot(qVideos, (snapshot) => {
+                const videosArray = [];
+                snapshot.forEach((doc) => {
+                    const video = doc.data();
+                    videosArray.push({
+                        ...video,
+                        createdAt: video.createdAt
+                    });
+
+                    // Fusionner les articles et vidéos
+                    const combinedArray = [...articlesArray, ...videosArray];
+
+                    // Trier par date (desc)
+                    combinedArray.sort((a, b) => b.createdAt.seconds - a.createdAt.seconds);
+
+                    // Afficher le contenu
+                    displayContent(combinedArray);
+                });
             });
         });
+
 
         // Importer les fonctions nécessaires de Firebase
         //import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";

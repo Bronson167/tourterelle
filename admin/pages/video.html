@@ -145,7 +145,7 @@
                             </div>
                             <div class="col-md-7 col-sm-7 col-12">
                                 <div class="card-body">
-                                    <form id="videoForm">
+                                    <form id="articleForm">
                                         <input type="text" id="title" placeholder="Titre">
                                         <label for="video">Video *</label>
                                         <input placeholder="choisir une vidéo" type="file" id="video" accept="video/*"
@@ -280,7 +280,7 @@
         if (userId === 'zjhL3GSxMEaY6aUZxb6DODdeZmP2') {
 
 
-            document.getElementById('videoForm').addEventListener('submit', async (e) => {
+            document.getElementById('articleForm').addEventListener('submit', async (e) => {
                 e.preventDefault();
 
                 const title = document.getElementById('title').value;
@@ -312,7 +312,7 @@
                     });
 
                     showModal('vidéo publié avec succès!');
-                    document.getElementById('videoForm').reset();
+                    document.getElementById('articleForm').reset();
                 } catch (error) {
                     console.error('Erreur lors de l\'ajout de la vidéo :', error);
                 }

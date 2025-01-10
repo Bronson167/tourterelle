@@ -2259,9 +2259,16 @@ strong {
 @media screen and (max-width:720px) {
     .back-btn {
         width: 90vh;
+        margin-left: 15px;
     }
 }
 
+@media screen and (max-width:600px) {
+    .back-btn {
+        width: 65vh;
+        margin-left: 15px;
+    }
+}
 
 
 
@@ -2269,11 +2276,5 @@ strong {
     .back-btn {
         width: 55vh;
         margin-left: 15px;
-    }
-}
-
-@media screen and (max-width:600px) {
-    .back-btn {
-        width: 74vh;
     }
 }

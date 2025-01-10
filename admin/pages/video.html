@@ -305,7 +305,7 @@
                     await uploadBytes(videoRef, videoFile);
                     const videoUrl = await getDownloadURL(videoRef);
 
-                    await addDoc(collection(db, 'articles'), {
+                    await addDoc(collection(db, 'video'), {
                         title: title,
                         videoUrl: videoUrl,  // Utilisez videoUrl au lieu de imageUrl
                         createdAt: serverTimestamp()

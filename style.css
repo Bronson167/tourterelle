@@ -2249,7 +2249,7 @@ strong {
     }
 }
 
-/* 
+
 .back-btn {
     width: 384vh;
     margin-left: 20px;
@@ -2264,7 +2264,7 @@ strong {
 
 @media screen and (max-width:600px) {
     .back-btn {
-        width: 74vh;
+        width: 55vh;
     }
 }
 

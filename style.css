@@ -2262,11 +2262,6 @@ strong {
     }
 }
 
-@media screen and (max-width:600px) {
-    .back-btn {
-        width: 74vh;
-    }
-}
 
 
 
@@ -2274,5 +2269,11 @@ strong {
     .back-btn {
         width: 55vh;
         margin-left: 15px;
+    }
+}
+
+@media screen and (max-width:600px) {
+    .back-btn {
+        width: 74vh;
     }
 }

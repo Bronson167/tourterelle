@@ -468,6 +468,9 @@
         const qArticles = query(articlesRef, orderBy('createdAt', 'desc'));
         const qVideos = query(videosRef, orderBy('createdAt', 'desc'));
 
+        console.log("article : " + qArticles);
+        console.log("videos : " + qVideos);
+
         // Fonction pour formater la date
         const formatDate = (date) => {
             const day = date.getDate();

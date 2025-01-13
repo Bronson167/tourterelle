@@ -479,6 +479,7 @@
         // Fonction pour afficher les articles et vidéos
         const displayContent = (contentArray) => {
             articlesContainer.innerHTML = '';
+            <p>Hello world</p>
             contentArray.forEach((content) => {
                 const { title, content: textContent, imageUrl, videoUrl, createdAt } = content;
                 const date = formatDate(createdAt.toDate());

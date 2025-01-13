@@ -475,8 +475,7 @@
             const year = date.getFullYear();
             return `${day} ${month}, ${year}`;
         };
-        console.log("test en dehors de la fonction");
-        console.log("Element du tableau : " + contentArray);
+
         // Fonction pour afficher les articles et vidéos
         const displayContent = (contentArray) => {
             articlesContainer.innerHTML = '';
@@ -565,6 +564,7 @@
 
                     // Afficher le contenu
                     displayContent(combinedArray);
+                    console.log("Affiche le combineArray: " + combinedArray);
                 });
             });
         });

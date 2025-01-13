@@ -555,6 +555,7 @@
 
                     // Fusionner les articles et vidéos
                     const combinedArray = [...articlesArray, ...videosArray];
+                    console.log("combine array est : " + combinedArray);
 
                     // Trier par date (desc)
                     combinedArray.sort((a, b) => b.createdAt.seconds - a.createdAt.seconds);

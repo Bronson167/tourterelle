@@ -479,7 +479,7 @@
         // Fonction pour afficher les articles et vidéos
         const displayContent = (contentArray) => {
             articlesContainer.innerHTML = '';
-            <p>Hello world</p>
+
             contentArray.forEach((content) => {
                 const { title, content: textContent, imageUrl, videoUrl, createdAt } = content;
                 const date = formatDate(createdAt.toDate());
@@ -488,6 +488,7 @@
                 if (videoUrl) {
                     console.log("L'url de la video" + videoUrl);
                     articlesContainer.innerHTML += `
+                     <p>Hello world</p>
                 <div class="card actualite-search">
                     <div class="row g-0">
                         <div class="col-md-5 col-sm-5 col-12">

@@ -455,6 +455,8 @@
         const db = getFirestore(app);
         const articlesContainer = document.getElementById('articles');
 
+        let combinedArray = [];
+
         const months = [
             'Jan', 'Fév', 'Mar', 'Avr', 'Mai', 'Juin',
             'Juil', 'Août', 'Sep', 'Oct', 'Nov', 'Déc'
@@ -555,7 +557,7 @@
                     });
 
                     // Fusionner les articles et vidéos
-                    const combinedArray = [...articlesArray, ...videosArray];
+                    combinedArray = [...articlesArray, ...videosArray];
 
                     // Trier par date (desc)
                     combinedArray.sort((a, b) => b.createdAt - a.createdAt);

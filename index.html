@@ -435,103 +435,136 @@
     </script>
 
     <script type="module">
-        // Firestore imports
-        import { collection, onSnapshot, query, orderBy } from "firebase/firestore";
-        import { db } from "./firebaseConfig"; // Assurez-vous que ce fichier est correctement configuré
+        // Importer les fonctions nécessaires de Firebase
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
+        import { getFirestore, collection, query, orderBy, onSnapshot } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js";
 
-        // Fonction pour formater les dates
-        function formatDate(timestamp) {
-            if (!timestamp) {
-                console.error("formatDate : timestamp non valide", timestamp);
-                return "Date inconnue";
-            }
-            try {
-                return timestamp.toDate().toLocaleDateString("fr-FR");
-            } catch (error) {
-                console.error("Erreur dans formatDate :", error);
-                return "Date inconnue";
-            }
-        }
+        // Configuration Firebase
+        const firebaseConfig = {
+            apiKey: "AIzaSyBX_g_LMjwihaLYswXz6nr3Pqio9u7OwkI",
+            authDomain: "tourtterelle-e62c6.firebaseapp.com",
+            projectId: "tourtterelle-e62c6",
+            storageBucket: "tourtterelle-e62c6.appspot.com",
+            messagingSenderId: "365846099562",
+            appId: "1:365846099562:web:0ff6bdec5afefa0d66fc13",
+            measurementId: "G-TD81R40LPD"
+        };
 
-        // Fonction pour afficher le contenu dans le DOM
-        function displayContent(dataArray) {
-            const articlesContainer = document.getElementById("articles");
-            if (!articlesContainer) {
-                console.error("Element articlesContainer introuvable dans le DOM !");
-                return;
-            }
+        // Initialiser Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+        const articlesContainer = document.getElementById('articles');
 
-            // Réinitialisation du contenu
-            articlesContainer.innerHTML = "";
+        const months = [
+            'Jan', 'Fév', 'Mar', 'Avr', 'Mai', 'Juin',
+            'Juil', 'Août', 'Sep', 'Oct', 'Nov', 'Déc'
+        ];
 
-            // Ajout des articles/vidéos dans le conteneur
-            dataArray.forEach((item) => {
-                const articleHTML = `
-            <div class="item">
-                <h2>${item.title}</h2>
-                <p>${item.content}</p>
-                ${item.imageUrl ? `<img src="${item.imageUrl}" alt="Image">` : ""}
-                ${item.videoUrl ? `<video src="${item.videoUrl}" controls></video>` : ""}
-                <p>Publié le : ${item.createdAt ? formatDate(item.createdAt) : "Date inconnue"}</p>
-            </div>
-        `;
-                articlesContainer.innerHTML += articleHTML;
+        // Références aux collections
+        const articlesRef = collection(db, 'articles');
+        const videosRef = collection(db, 'videos');
+
+        // Requêtes pour récupérer les articles et les vidéos triés par date de publication
+        const qArticles = query(articlesRef, orderBy('createdAt', 'desc'));
+        const qVideos = query(videosRef, orderBy('createdAt', 'desc'));
+
+        // Fonction pour formater la date
+        const formatDate = (date) => {
+            const day = date.getDate();
+            const month = months[date.getMonth()];
+            const year = date.getFullYear();
+            return `${day} ${month}, ${year}`;
+        };
+
+        // Fonction pour afficher les articles et vidéos
+        const displayContent = (contentArray) => {
+            articlesContainer.innerHTML = '';
+
+            contentArray.forEach((content) => {
+                const { title, content: textContent, imageUrl, videoUrl, createdAt } = content;
+                const date = formatDate(createdAt);
+
+                // Affichage de l'article ou de la vidéo
+                if (videoUrl) {
+                    articlesContainer.innerHTML += `
+                <div class="card actualite-search">
+                    <div class="row g-0">
+                        <div class="col-md-5 col-sm-5 col-12">
+                            <video controls class="img-fluid rounded-start">
+                                <source src="${videoUrl}" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                        <div class="col-md-7 col-sm-7 col-12">
+                            <div class="card-body">
+                                <p class="publication"><i class="fa-regular fa-calendar-days"></i>
+                                    <small class="text-muted">${date}</small>
+                                </p>
+                                <h5 class="card-title act">${title}</h5>
+                                <p class="card-text">${textContent}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+                } else {
+                    articlesContainer.innerHTML += `
+                <div class="card actualite-search">
+                    <div class="row g-0">
+                        <div class="col-md-5 col-sm-5 col-12">
+                            <img src="${imageUrl}" class="img-fluid rounded-start" alt="${title}">
+                        </div>
+                        <div class="col-md-7 col-sm-7 col-12">
+                            <div class="card-body">
+                                <p class="publication"><i class="fa-regular fa-calendar-days"></i>
+                                    <small class="text-muted">${date}</small>
+                                </p>
+                                <h5 class="card-title act">${title}</h5>
+                                <p class="card-text">${textContent}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+                }
             });
-            console.log("Contenu affiché dans le DOM :", dataArray);
-        }
+        };
 
-        // Fonction principale pour récupérer les données
-        function fetchAndDisplayContent() {
+        // Récupérer les articles
+        onSnapshot(qArticles, (snapshot) => {
             const articlesArray = [];
-            const videosArray = [];
-
-            // Référence à la collection 'articles'
-            const qArticles = query(collection(db, "articles"), orderBy("createdAt", "desc"));
-            onSnapshot(qArticles, (snapshot) => {
-                console.log("Snapshot articles reçu :", snapshot);
-                snapshot.forEach((doc) => {
-                    articlesArray.push({ id: doc.id, ...doc.data() });
+            snapshot.forEach((doc) => {
+                const article = doc.data();
+                articlesArray.push({
+                    ...article,
+                    createdAt: article.createdAt.toDate() // Assurez-vous que createdAt est converti en Date
                 });
-
-                console.log("Articles récupérés :", articlesArray);
-
-                // Référence à la collection 'videos'
-                const qVideos = query(collection(db, "videos"), orderBy("createdAt", "desc"));
-                onSnapshot(qVideos, (snapshot) => {
-                    console.log("Snapshot videos reçu :", snapshot);
-                    snapshot.forEach((doc) => {
-                        videosArray.push({ id: doc.id, ...doc.data() });
-                    });
-
-                    console.log("Vidéos récupérées :", videosArray);
-
-                    // Combinaison des deux tableaux et tri
-                    const combinedArray = [...articlesArray, ...videosArray];
-                    console.log("Tableau combiné avant tri :", combinedArray);
-
-                    combinedArray.sort((a, b) => {
-                        if (!a.createdAt || !b.createdAt) {
-                            console.warn("createdAt manquant pour un ou plusieurs éléments", a, b);
-                            return 0;
-                        }
-                        return b.createdAt.seconds - a.createdAt.seconds;
-                    });
-
-                    console.log("Tableau combiné après tri :", combinedArray);
-
-                    // Affichage dans le DOM
-                    displayContent(combinedArray);
-                }, (error) => {
-                    console.error("Erreur lors de la récupération des vidéos :", error);
-                });
-            }, (error) => {
-                console.error("Erreur lors de la récupération des articles :", error);
             });
-        }
 
-        // Exécution de la fonction principale
-        fetchAndDisplayContent();
+            // Récupérer les vidéos
+            onSnapshot(qVideos, (snapshot) => {
+                const videosArray = [];
+                snapshot.forEach((doc) => {
+                    const video = doc.data();
+                    videosArray.push({
+                        ...video,
+                        createdAt: video.createdAt.toDate() // Assurez-vous que createdAt est converti en Date
+                    });
 
+                    // Fusionner les articles et vidéos
+                    const combinedArray = [...articlesArray, ...videosArray];
+
+                    // Trier par date (desc)
+                    combinedArray.sort((a, b) => b.createdAt - a.createdAt);
+
+                    // Afficher le contenu
+                    displayContent(combinedArray);
+                });
+            });
+        });
+
+    </script>
+    <script type="module">
 
         // Importer les fonctions nécessaires de Firebase
         //import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";

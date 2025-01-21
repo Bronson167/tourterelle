@@ -544,26 +544,14 @@
                         // Affichage de la vidéo
                         contentElement.innerHTML = `
 
-                        
-                    <div class="card actualite-search">
-                        <div class="row g-0">
-                            
-                            <div class="col-md-12 col-sm-12 col-12">
-                                 <p class="publication"><i class="fa-regular fa-calendar-days"></i>
-                                        <small class="text-muted">${formatDate(item.createdAt)}</small>
-                                    </p>
-                                <video controls style="max-width: 100%; height: auto;">
-                                    <source src="${item.videoUrl}" type="video/mp4">
-                                    Votre navigateur ne supporte pas la balise vidéo.
-                                </video>
-                                <h6>${item.title}</h6>
-                               
-                            </div>
-                            
-                            
-                        </div>
+                          <p class="publication"><i class="fa-regular fa-calendar-days"></i>
+                    <small class="text-muted">${formatDate(item.createdAt)}</small>
+                </p>
+                    <div class="embed-responsive embed-responsive-16by9">
+                        <iframe class="embed-responsive-item"src="${item.videoUrl}" allowfullscreen></iframe>
                     </div>
-            `;
+                    <h6>${item.title}</h6>
+                                    `;
                     }
 
                     // Ajouter l'élément à la page

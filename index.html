@@ -469,6 +469,11 @@
             const year = date.getFullYear();
             return `${day} ${month}, ${year}`;
         };
+        // Fonction pour formater la date au format "11 janvier 2025"
+        function formatDate(date) {
+            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+            return new Intl.DateTimeFormat('fr-FR', options).format(new Date(date.seconds * 1000));
+        }
 
         // Fonction pour récupérer les articles et vidéos et les afficher
         async function loadContent() {
@@ -480,27 +485,31 @@
                 const articleSnapshot = await getDocs(collection(db, "articles"));
                 articleSnapshot.forEach(doc => {
                     const article = doc.data();
-                    allContent.push({
-                        type: "article",
-                        id: doc.id,
-                        title: article.title,
-                        content: article.content,
-                        createdAt: article.createdAt,
-                        imageUrl: article.imageUrl,
-                    });
+                    if (article.createdAt && article.createdAt.seconds) {
+                        allContent.push({
+                            type: "article",
+                            id: doc.id,
+                            title: article.title,
+                            content: article.content,
+                            createdAt: article.createdAt,
+                            imageUrl: article.imageUrl,
+                        });
+                    }
                 });
 
                 // Récupérer les documents de la collection "video"
                 const videoSnapshot = await getDocs(collection(db, "video"));
                 videoSnapshot.forEach(doc => {
                     const video = doc.data();
-                    allContent.push({
-                        type: "video",
-                        id: doc.id,
-                        title: video.title,
-                        createdAt: video.createdAt,
-                        videoUrl: video.videoUrl,
-                    });
+                    if (video.createdAt && video.createdAt.seconds) {
+                        allContent.push({
+                            type: "video",
+                            id: doc.id,
+                            title: video.title,
+                            createdAt: video.createdAt,
+                            videoUrl: video.videoUrl,
+                        });
+                    }
                 });
 
                 // Trier tout le contenu par la date la plus récente
@@ -523,7 +532,7 @@
               <h3>${item.title}</h3>
               <p>${item.content}</p>
               <img src="${item.imageUrl}" alt="${item.title}" style="max-width: 100%; height: auto;">
-              <p><strong>Publié le :</strong> ${new Date(item.createdAt.seconds * 1000).toLocaleDateString()}</p>
+              <p><strong>Publié le :</strong> ${formatDate(item.createdAt)}</p>
             `;
                     } else if (item.type === "video") {
                         // Affichage de la vidéo
@@ -533,7 +542,7 @@
                 <source src="${item.videoUrl}" type="video/mp4">
                 Votre navigateur ne supporte pas la balise vidéo.
               </video>
-              <p><strong>Publié le :</strong> ${new Date(item.createdAt.seconds * 1000).toLocaleDateString()}</p>
+              <p><strong>Publié le :</strong> ${formatDate(item.createdAt)}</p>
             `;
                     }
 

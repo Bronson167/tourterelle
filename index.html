@@ -462,13 +462,7 @@
             'Juil', 'Août', 'Sep', 'Oct', 'Nov', 'Déc'
         ];
 
-        // Fonction pour formater la date
-        const formatDate = (date) => {
-            const day = date.getDate();
-            const month = months[date.getMonth()];
-            const year = date.getFullYear();
-            return `${day} ${month}, ${year}`;
-        };
+
         // Fonction pour formater la date au format "11 janvier 2025"
         function formatDate(date) {
             const options = { year: 'numeric', month: 'long', day: 'numeric' };

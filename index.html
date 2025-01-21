@@ -476,7 +476,7 @@
 
             try {
                 // Récupérer les documents de la collection "articles"
-                const querySnapshot = await db.collection('articles').get();
+                const querySnapshot = await getDocs(collection(db, "articles"));
 
                 // Vérifier s'il y a des articles
                 if (querySnapshot.empty) {

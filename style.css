@@ -2276,3 +2276,7 @@ strong {
         margin-left: 15px;
     }
 }
+
+.vid.bg-white.w-100.ml-3 {
+    padding-left: 15px;
+}

@@ -543,7 +543,8 @@
                     } else if (item.type === "video") {
                         // Affichage de la vidéo
                         contentElement.innerHTML = `
-
+                        <div class="card actualite-search">
+                        <div class="row g-0">
                           <p class="publication"><i class="fa-regular fa-calendar-days"></i>
                     <small class="text-muted">${formatDate(item.createdAt)}</small>
                 </p>
@@ -551,6 +552,8 @@
                         <iframe class="embed-responsive-item"src="${item.videoUrl}" allowfullscreen></iframe>
                     </div>
                     <h6>${item.title}</h6>
+                    </div>
+                    </div>
                                     `;
                     }
 

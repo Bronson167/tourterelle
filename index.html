@@ -470,45 +470,84 @@
             return `${day} ${month}, ${year}`;
         };
 
-        // Fonction pour récupérer et afficher les articles
-        async function loadArticles() {
+        // Fonction pour récupérer les articles et vidéos et les afficher
+        async function loadContent() {
             const articlesDiv = document.getElementById('articles');
+            let allContent = [];
 
             try {
                 // Récupérer les documents de la collection "articles"
-                const querySnapshot = await getDocs(collection(db, "articles"));
+                const articleSnapshot = await getDocs(collection(db, "articles"));
+                articleSnapshot.forEach(doc => {
+                    const article = doc.data();
+                    allContent.push({
+                        type: "article",
+                        id: doc.id,
+                        title: article.title,
+                        content: article.content,
+                        createdAt: article.createdAt,
+                        imageUrl: article.imageUrl,
+                    });
+                });
 
-                // Vérifier s'il y a des articles
-                if (querySnapshot.empty) {
-                    articlesDiv.innerHTML = 'Aucun article disponible.';
+                // Récupérer les documents de la collection "video"
+                const videoSnapshot = await getDocs(collection(db, "video"));
+                videoSnapshot.forEach(doc => {
+                    const video = doc.data();
+                    allContent.push({
+                        type: "video",
+                        id: doc.id,
+                        title: video.title,
+                        createdAt: video.createdAt,
+                        videoUrl: video.videoUrl,
+                    });
+                });
+
+                // Trier tout le contenu par la date la plus récente
+                allContent.sort((a, b) => b.createdAt.seconds - a.createdAt.seconds);
+
+                // Vérifier s'il y a des articles ou vidéos
+                if (allContent.length === 0) {
+                    articlesDiv.innerHTML = 'Aucun contenu disponible.';
                     return;
                 }
 
-                // Parcourir chaque document et afficher son contenu
-                querySnapshot.forEach(doc => {
-                    const article = doc.data();
-                    const articleElement = document.createElement('div');
-                    articleElement.classList.add('article');
+                // Parcourir le contenu trié et l'afficher
+                allContent.forEach(item => {
+                    const contentElement = document.createElement('div');
+                    contentElement.classList.add('content-item');
 
-                    // Créer un élément HTML pour chaque article
-                    articleElement.innerHTML = `
-            <h3>${article.title}</h3>
-            <p>${article.content}</p>
-            <img src="${article.imageUrl}" alt="${article.title}" style="max-width: 100%; height: auto;">
-            <p><strong>Publié le :</strong> ${new Date(article.createdAt.seconds * 1000).toLocaleDateString()}</p>
-          `;
+                    if (item.type === "article") {
+                        // Affichage de l'article
+                        contentElement.innerHTML = `
+              <h3>${item.title}</h3>
+              <p>${item.content}</p>
+              <img src="${item.imageUrl}" alt="${item.title}" style="max-width: 100%; height: auto;">
+              <p><strong>Publié le :</strong> ${new Date(item.createdAt.seconds * 1000).toLocaleDateString()}</p>
+            `;
+                    } else if (item.type === "video") {
+                        // Affichage de la vidéo
+                        contentElement.innerHTML = `
+              <h3>${item.title}</h3>
+              <video controls style="max-width: 100%; height: auto;">
+                <source src="${item.videoUrl}" type="video/mp4">
+                Votre navigateur ne supporte pas la balise vidéo.
+              </video>
+              <p><strong>Publié le :</strong> ${new Date(item.createdAt.seconds * 1000).toLocaleDateString()}</p>
+            `;
+                    }
 
-                    // Ajouter l'article à la page
-                    articlesDiv.appendChild(articleElement);
+                    // Ajouter l'élément à la page
+                    articlesDiv.appendChild(contentElement);
                 });
             } catch (error) {
-                console.error("Erreur lors de la récupération des articles : ", error);
-                articlesDiv.innerHTML = 'Erreur lors de la récupération des articles.';
+                console.error("Erreur lors de la récupération du contenu : ", error);
+                articlesDiv.innerHTML = 'Erreur lors de la récupération du contenu.';
             }
         }
 
-        // Charger les articles au chargement de la page
-        window.onload = loadArticles;
+        // Charger le contenu au chargement de la page
+        window.onload = loadContent;
     </script>
     <script type="module">
 

@@ -2277,6 +2277,7 @@ strong {
     }
 }
 
-.bg-white.w-100.pl-3 {
+.publication.title {
     padding-left: 15px;
+    padding-top: 10px;
 }

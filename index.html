@@ -521,22 +521,47 @@
                     contentElement.classList.add('content-item');
 
                     if (item.type === "article") {
-                        // Affichage de l'article
                         contentElement.innerHTML = `
-              <h3>${item.title}</h3>
-              <p>${item.content}</p>
-              <img src="${item.imageUrl}" alt="${item.title}" style="max-width: 100%; height: auto;">
-              <p><strong>Publié le :</strong> ${formatDate(item.createdAt)}</p>
-            `;
+                       <div class="card actualite-search">
+                        <div class="row g-0">
+                            <div class="col-md-5 col-sm-5 col-12">
+                                <img src="${item.imageUrl}" class="img-fluid rounded-start" alt="${article.title}">
+                            </div>
+                            <div class="col-md-7 col-sm-7 col-12">
+                                <div class="card-body">
+                                    <p class="publication"><i class="fa-regular fa-calendar-days"></i>
+                                        <small class="text-muted">${formatDate(item.createdAt)}</small>
+                                    </p>
+                                    <h5 class="card-title act">${item.title}</h5>
+                                    <p class="card-text">${item.content}</p>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                       `;
                     } else if (item.type === "video") {
                         // Affichage de la vidéo
                         contentElement.innerHTML = `
-              <h3>${item.title}</h3>
-              <video controls style="max-width: 100%; height: auto;">
-                <source src="${item.videoUrl}" type="video/mp4">
-                Votre navigateur ne supporte pas la balise vidéo.
-              </video>
-              <p><strong>Publié le :</strong> ${formatDate(item.createdAt)}</p>
+
+                        
+                    <div class="card actualite-search">
+                        <div class="row g-0">
+                            
+                            <div class="col-md-12 col-sm-12 col-12">
+                                <h3>${item.title}</h3>
+                                <video controls style="max-width: 100%; height: auto;">
+                                    <source src="${item.videoUrl}" type="video/mp4">
+                                    Votre navigateur ne supporte pas la balise vidéo.
+                                </video>
+                                <p class="publication"><i class="fa-regular fa-calendar-days"></i>
+                                        <small class="text-muted">${formatDate(item.createdAt)}</small>
+                                    </p>
+                            </div>
+                            
+                            
+                        </div>
+                    </div>
             `;
                     }
 

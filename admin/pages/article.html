@@ -342,6 +342,13 @@
         hamBurger.addEventListener("click", function () {
             document.querySelector("#sidebar").classList.toggle("expand");
         });
+
+        var myModal = new bootstrap.Modal(document.getElementById('alertModal'));
+        myModal.show();
+
+        // Assurez-vous de retirer l'attribut 'aria-hidden' lors de l'ouverture
+        document.getElementById('alertModal').setAttribute('aria-hidden', 'false');
+
     </script>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

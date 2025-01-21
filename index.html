@@ -230,7 +230,29 @@
         <p class="no">Aucun article ne correspond.</p>
 
         <div class="bottom" id="articles">
+            <div class="carousel slide" id="videoCarousel" data-bs-ride="carousel">
+                <!-- Indicateurs du carrousel -->
+                <div class="carousel-indicators">
+                    <!-- Ces indicateurs seront générés dynamiquement avec JavaScript -->
+                </div>
 
+                <!-- Contenu du carrousel -->
+                <div class="carousel-inner">
+                    <!-- Les vidéos seront insérées ici avec JavaScript -->
+                </div>
+
+                <!-- Contrôles du carrousel (flèches de navigation) -->
+                <button class="carousel-control-prev" type="button" data-bs-target="#videoCarousel"
+                    data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Précédent</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#videoCarousel"
+                    data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Suivant</span>
+                </button>
+            </div>
         </div>
     </section>
 
@@ -541,20 +563,39 @@
                     </div>
                        `;
                     } else if (item.type === "video") {
-                        // Affichage de la vidéo
-                        contentElement.innerHTML = `
-                        <div class="bg-white w-100 pl-3">
-                       
-                          <p class="publication"><i class="fa-regular fa-calendar-days"></i>
-                                <small class="text-muted">${formatDate(item.createdAt)}</small>
-                            </p>
-                  <div class="embed-responsive w-100 mb-3 ml-3">
-  <iframe class="embed-responsive-item" src="${item.videoUrl}" allowfullscreen></iframe>
-</div>
-                    <h6>${item.title}</h6>
-                    
-                    </div>
-                                    `;
+                        const carouselInner = document.querySelector('.carousel-inner');
+                        const carouselIndicators = document.querySelector('.carousel-indicators');
+
+                        const carouselItem = document.createElement('div');
+                        carouselItem.classList.add('carousel-item', index === 0 ? 'active' : ''); // Le premier élément est "active"
+
+                        carouselItem.innerHTML = `
+      <div class="bg-white w-100 pl-3">
+        <p class="publication"><i class="fa-regular fa-calendar-days"></i>
+          <small class="text-muted">${formatDate(item.createdAt)}</small>
+        </p>
+        <div class="embed-responsive w-100 mb-3 ml-3">
+          <iframe class="embed-responsive-item" src="${item.videoUrl}" allowfullscreen></iframe>
+        </div>
+        <h6>${item.title}</h6>
+      </div>
+    `;
+
+                        // Ajouter le carrousel item dans le carrousel-inner
+                        carouselInner.appendChild(carouselItem);
+
+                        // Créer un indicateur pour chaque vidéo
+                        const indicator = document.createElement('button');
+                        indicator.type = 'button';
+                        indicator.dataset.bsTarget = '#videoCarousel';
+                        indicator.dataset.bsSlideTo = index;
+                        indicator.classList.add('carousel-indicator');
+                        if (index === 0) indicator.classList.add('active'); // Le premier indicateur est "active"
+                        carouselIndicators.appendChild(indicator);
+
+
+
+
                     }
 
                     // Ajouter l'élément à la page

@@ -462,16 +462,6 @@
             'Juil', 'Août', 'Sep', 'Oct', 'Nov', 'Déc'
         ];
 
-        // Références aux collections
-        const articlesRef = collection(db, 'articles');
-        const videosRef = collection(db, 'videos');
-
-        // Requêtes pour récupérer les articles et les vidéos triés par date de publication
-        const qArticles = query(articlesRef, orderBy('createdAt', 'desc'));
-        const qVideos = query(videosRef, orderBy('createdAt', 'desc'));
-
-        ;
-
         // Fonction pour formater la date
         const formatDate = (date) => {
             const day = date.getDate();
@@ -480,96 +470,45 @@
             return `${day} ${month}, ${year}`;
         };
 
-        // Fonction pour afficher les articles et vidéos
-        const displayContent = (contentArray) => {
-            console.log("content array: " + contentArray);
-            articlesContainer.innerHTML = '';
+        // Fonction pour récupérer et afficher les articles
+        async function loadArticles() {
+            const articlesDiv = document.getElementById('articles');
 
-            contentArray.forEach((content) => {
-                const { title, content: textContent, imageUrl, videoUrl, createdAt } = content;
-                const date = formatDate(createdAt);
+            try {
+                // Récupérer les documents de la collection "articles"
+                const querySnapshot = await db.collection('articles').get();
 
-                // Affichage de l'article ou de la vidéo
-                if (videoUrl) {
-                    articlesContainer.innerHTML += `
-                <div class="card actualite-search">
-                    <div class="row g-0">
-                        <div class="col-md-5 col-sm-5 col-12">
-                            <video controls class="img-fluid rounded-start">
-                                <source src="${videoUrl}" type="video/mp4">
-                                Your browser does not support the video tag.
-                            </video>
-                        </div>
-                        <div class="col-md-7 col-sm-7 col-12">
-                            <div class="card-body">
-                                <p class="publication"><i class="fa-regular fa-calendar-days"></i>
-                                    <small class="text-muted">${date}</small>
-                                </p>
-                                <h5 class="card-title act">${title}</h5>
-                                <p class="card-text">${textContent}</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            `;
-                } else {
-                    articlesContainer.innerHTML += `
-                <div class="card actualite-search">
-                    <div class="row g-0">
-                        <div class="col-md-5 col-sm-5 col-12">
-                            <img src="${imageUrl}" class="img-fluid rounded-start" alt="${title}">
-                        </div>
-                        <div class="col-md-7 col-sm-7 col-12">
-                            <div class="card-body">
-                                <p class="publication"><i class="fa-regular fa-calendar-days"></i>
-                                    <small class="text-muted">${date}</small>
-                                </p>
-                                <h5 class="card-title act">${title}</h5>
-                                <p class="card-text">${textContent}</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            `;
+                // Vérifier s'il y a des articles
+                if (querySnapshot.empty) {
+                    articlesDiv.innerHTML = 'Aucun article disponible.';
+                    return;
                 }
-            });
-        };
 
-        // Récupérer les articles
-        onSnapshot(qArticles, (snapshot) => {
-            const articlesArray = [];
-            snapshot.forEach((doc) => {
-                const article = doc.data();
-                articlesArray.push({
-                    ...article,
-                    createdAt: article.createdAt.toDate() // Assurez-vous que createdAt est converti en Date
+                // Parcourir chaque document et afficher son contenu
+                querySnapshot.forEach(doc => {
+                    const article = doc.data();
+                    const articleElement = document.createElement('div');
+                    articleElement.classList.add('article');
+
+                    // Créer un élément HTML pour chaque article
+                    articleElement.innerHTML = `
+            <h3>${article.title}</h3>
+            <p>${article.content}</p>
+            <img src="${article.imageUrl}" alt="${article.title}" style="max-width: 100%; height: auto;">
+            <p><strong>Publié le :</strong> ${new Date(article.createdAt.seconds * 1000).toLocaleDateString()}</p>
+          `;
+
+                    // Ajouter l'article à la page
+                    articlesDiv.appendChild(articleElement);
                 });
-            });
+            } catch (error) {
+                console.error("Erreur lors de la récupération des articles : ", error);
+                articlesDiv.innerHTML = 'Erreur lors de la récupération des articles.';
+            }
+        }
 
-            // Récupérer les vidéos
-            onSnapshot(qVideos, (snapshot) => {
-                const videosArray = [];
-                snapshot.forEach((doc) => {
-                    const video = doc.data();
-                    videosArray.push({
-                        ...video,
-                        createdAt: video.createdAt.toDate() // Assurez-vous que createdAt est converti en Date
-                    });
-
-                    // Fusionner les articles et vidéos
-                    combinedArray = [...articlesArray, ...videosArray];
-
-                    // Trier par date (desc)
-                    combinedArray.sort((a, b) => b.createdAt - a.createdAt);
-
-                    // Afficher le contenu
-
-                });
-            });
-        });
-        displayContent(combinedArray);
-        console.log("combine array :" + combinedArray);
-
+        // Charger les articles au chargement de la page
+        window.onload = loadArticles;
     </script>
     <script type="module">
 

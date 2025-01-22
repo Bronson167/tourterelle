@@ -304,20 +304,19 @@
                 e.preventDefault();
 
                 const title = document.getElementById('title').value;
-                const content = document.getElementById('content').value;
-                const imageFile = document.getElementById('video').files[0];
+                const videoFile = document.getElementById('video').files[0];
                 const articleRef = doc(db, 'video', articleId);
 
                 // Récupérer l'article actuel pour conserver l'ancienne image si nécessaire
                 const articleDoc = await getDoc(articleRef);
                 const currentImageUrl = articleDoc.exists() ? articleDoc.data().videoUrl : null;
 
-                let imageUrl = currentImageUrl; // Par défaut, on garde l'ancienne image
+                let vidoUrl = currentVideoUrl; // Par défaut, on garde l'ancienne image
 
                 // Si une nouvelle image est sélectionnée, on la télécharge et on met à jour l'URL
-                if (imageFile) {
+                if (videoFile) {
                     const allowedTypes = ['video/mp4', 'video/webm', 'video/ogg', 'video/mov'];
-                    if (!allowedTypes.includes(imageFile.type)) {
+                    if (!allowedTypes.includes(videoFile.type)) {
                         showModal('Veuillez télécharger une vidéo au format MP4, WebM ou OGG.');
                         return;
                     }
@@ -332,7 +331,7 @@
 
                         });
 
-                        showModal('vidéo publié avec succès!');
+                        showModal('vidéo modifiée avec succès!');
                         document.getElementById('articleForm').reset();
                     } catch (error) {
                         console.error('Erreur lors de l\'ajout de la vidéo :', error);

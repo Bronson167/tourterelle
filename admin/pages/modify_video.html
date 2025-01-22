@@ -294,7 +294,6 @@
                     const article = articleSnap.data();
                     document.getElementById('articleId').value = articleId;
                     document.getElementById('title').value = article.title;
-                    document.getElementById('content').value = article.url;
                 } else {
                     console.log("Aucun document trouvé !");
                 }
@@ -312,7 +311,7 @@
                 const currentVideoUrl = articleDoc.exists() ? articleDoc.data().videoUrl : null;
 
                 let videoUrl = currentVideoUrl; // Par défaut, on garde l'ancienne image
-                console.log(videoUrl);
+
                 // Si une nouvelle image est sélectionnée, on la télécharge et on met à jour l'URL
                 if (videoFile) {
                     const allowedTypes = ['video/mp4', 'video/webm', 'video/ogg', 'video/mov'];
@@ -321,24 +320,22 @@
                         return;
                     }
 
-                    try {
-                        await uploadBytes(videoRef, videoFile);
-                        const videoUrl = await getDownloadURL(videoRef);
+                    const videoRef = ref(storage, `videos/${videoFile.name}`);
 
-                        await updateDoc(articleRef, {
-                            title: title,
-                            videoUrl: videoUrl,  // Utilisez videoUrl au lieu de imageUrl
-
-                        });
-
-                        showModal('vidéo modifiée avec succès!');
-                        document.getElementById('articleForm').reset();
-                    } catch (error) {
-                        console.error('Erreur lors de l\'ajout de la vidéo :', error);
-                    }
-
+                    await uploadBytes(videoRef, videoFile);
+                    const videoUrl = await getDownloadURL(videoRef);
 
                 }
+                // Mettre à jour l'article avec le nouveau titre, contenu, et image (si modifiée)
+                await updateDoc(articleRef, {
+                    title: title,
+                    videoUrl: videoUrl // On utilise l'ancienne image si aucune nouvelle image n'est sélectionnée
+                });
+
+                // Affichage de la modale de succès
+                document.getElementById('successMessage').textContent = 'Vidéo modifié avec succès !';
+                const successModal = new bootstrap.Modal(document.getElementById('successModal'));
+                successModal.show();
 
             });
             loadArticle();

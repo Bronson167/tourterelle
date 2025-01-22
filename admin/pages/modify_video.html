@@ -306,13 +306,13 @@
                 const videoFile = document.getElementById('video').files[0];
                 const articleRef = doc(db, 'video', articleId);
 
-                // Récupérer l'article actuel pour conserver l'ancienne image si nécessaire
+                // Récupérer l'article actuel pour conserver l'ancienne vidéo si nécessaire
                 const articleDoc = await getDoc(articleRef);
                 const currentVideoUrl = articleDoc.exists() ? articleDoc.data().videoUrl : null;
 
-                let videoUrl = currentVideoUrl; // Par défaut, on garde l'ancienne image
+                let videoUrl = currentVideoUrl; // Par défaut, on garde l'ancienne vidéo
 
-                // Si une nouvelle image est sélectionnée, on la télécharge et on met à jour l'URL
+                // Si une nouvelle vidéo est sélectionnée, on la télécharge et on met à jour l'URL
                 if (videoFile) {
                     const allowedTypes = ['video/mp4', 'video/webm', 'video/ogg', 'video/mov'];
                     if (!allowedTypes.includes(videoFile.type)) {
@@ -323,21 +323,22 @@
                     const videoRef = ref(storage, `videos/${videoFile.name}`);
 
                     await uploadBytes(videoRef, videoFile);
-
-
+                    videoUrl = await getDownloadURL(videoRef); // Mettez à jour `videoUrl` ici
+                    console.log(videoUrl);
                 }
-                // Mettre à jour l'article avec le nouveau titre, contenu, et image (si modifiée)
+
+                // Mettre à jour l'article avec le nouveau titre et la nouvelle vidéo (si modifiée)
                 await updateDoc(articleRef, {
                     title: title,
-                    videoUrl: videoUrl // On utilise l'ancienne image si aucune nouvelle image n'est sélectionnée
+                    videoUrl: videoUrl // On utilise le bon `videoUrl` (ancien ou nouveau)
                 });
 
                 // Affichage de la modale de succès
-                document.getElementById('successMessage').textContent = 'Vidéo modifié avec succès !';
+                document.getElementById('successMessage').textContent = 'Vidéo modifiée avec succès !';
                 const successModal = new bootstrap.Modal(document.getElementById('successModal'));
                 successModal.show();
-
             });
+
             loadArticle();
         } else {
             console.log("Aucun utilisateur authentifié");

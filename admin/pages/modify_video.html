@@ -323,8 +323,7 @@
                     const videoRef = ref(storage, `videos/${videoFile.name}`);
 
                     await uploadBytes(videoRef, videoFile);
-                    const videoUrl = await getDownloadURL(videoRef);
-                    console.log(videoUrl);
+
 
                 }
                 // Mettre à jour l'article avec le nouveau titre, contenu, et image (si modifiée)

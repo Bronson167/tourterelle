@@ -133,34 +133,18 @@
             </div>
         </aside> -->
 
+
         <div class="main-side p-3">
-            <section class="publier" id="admission">
-                <div class="content-admission">
-                    <h1>Publier un article</h1>
-                    <div class="card actualite-search">
-                        <div class="row g-0">
-                            <div class="col-md-5 col-sm-5 col-12 image-icon">
-                                <img src="../../images/Digital-Library-removebg-preview.png"
-                                    class="img-fluid rounded-start admin-image" alt="...">
-                            </div>
-                            <div class="col-md-7 col-sm-7 col-12">
-                                <div class="card-body">
-                                    <form id="articleForm">
-                                        <input type="text" id="title" placeholder="Titre">
-                                        <label for="video">Video *</label>
-                                        <input placeholder="choisir une vidéo" type="file" id="video" accept="video/*"
-                                            required>
-
-                                        <button type="submit">Publier</button>
-                                    </form>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
+            <h1 class="green">Modifier une vidéo</h1>
+            <div id="articleList" class="list-group">
+                <div class="article-title-menu">
+                    <h4>Titre</h4>
+                    <h4>Url</h4>
+                    <h4>Action</h4>
                 </div>
-            </section>
+                <!-- Videos will be loaded here dynamically -->
+            </div>
+
         </div>
 
     </div>
@@ -189,77 +173,41 @@
                                 </ul>
                             </li>
                             <li>
-                                <a class="" href="../../index.thml#contact">Contact</a>
+                                <a href="#">Autres</a>
+                                <ul>
+                                    <li><a href="../../index.html#contact">Contact</a></li>
+                                </ul>
                             </li>
                         </ul>
                     </div>
-                </div>
-
-                <div class="box">
-                    <h3>Institution Mixte La Tourterelle</h3>
-                    <ul class="contact">
-                        <li>No. 1 route de meyotte après le pont</li>
-                        <li>Pétion ville/Haiti</li>
-                    </ul>
-                    <h3>Institution Mixte Étoile D’or</h3>
-                    <ul class="contact">
-                        <li>No. 5 Bas Baptiste Impasse Robinson (sur la route de diegue)</li>
-                        <li>Pétion ville/Haiti</li>
-                    </ul>
-                </div>
-
-                <div class="box">
-                    <h3>Contact</h3>
-                    <p>Pour nous joindre</p>
-                    <ul class="contact">
-                        <li>institutionmixtelatourterelle@gmail.com</li>
-                        <li>institutionmixteetoiledor@gmail.com</li>
-                        <li>(509) 3414-0050 | (509) 3752-2687</li>
-                    </ul>
-                </div>
-                <div class="box">
-                    <h3>Politique</h3>
-                    <ul class="contact">
-                        <li>Sécurité & Confidentialité</li>
-                        <li> Environnementale</li>
-                        <li>FAQ</li>
-                    </ul>
                 </div>
             </div>
         </div>
     </footer>
 
-    <!-- Modal -->
-    <div class="modal fade" id="alertModal" tabindex="-1" aria-labelledby="alertModalLabel" aria-hidden="true">
+    <!-- Modal de confirmation -->
+    <div class="modal fade" id="confirmationModal" tabindex="-1" aria-labelledby="confirmationModalLabel"
+        aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="alertModalLabel">Notification</h5>
+                    <h5 class="modal-title text-success" id="confirmationModalLabel">Confirmation</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body" id="modalMessage"></div>
+                <div class="modal-body">
+                    Êtes-vous sûr de vouloir modifier cette vidéo ?
+                </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                    <button type="button" class="btn btn-primary" id="confirmActionBtn">Confirmer</button>
                 </div>
             </div>
         </div>
     </div>
 
-    <script>
-        function showModal(message) {
-            const modalMessage = document.getElementById('modalMessage');
-            modalMessage.textContent = message;
-            const modal = new bootstrap.Modal(document.getElementById('alertModal'));
-            modal.show();
-        }
-
-
-    </script>
-
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
-        import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js";
-        import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-storage.js";
+        import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js";
 
         const firebaseConfig = {
             apiKey: "AIzaSyBX_g_LMjwihaLYswXz6nr3Pqio9u7OwkI",
@@ -273,67 +221,51 @@
 
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
-        const storage = getStorage(app);
-        import { getAuth } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
-        const auth = getAuth();
-        const user = auth.currentUser;
-        const userId = localStorage.getItem('userId');
 
-        if (userId === 'zjhL3GSxMEaY6aUZxb6DODdeZmP2') {
+        async function loadArticles() {
+            const articlesCollection = collection(db, 'video');
+            const articlesSnapshot = await getDocs(articlesCollection);
+            const articlesList = document.getElementById('articleList');
 
-
-            document.getElementById('articleForm').addEventListener('submit', async (e) => {
-                e.preventDefault();
-
-                const title = document.getElementById('title').value;
-                const videoFile = document.getElementById('video').files[0];
-
-
-                if (!title || !videoFile) {
-                    showModal('Veuillez remplir tous les champs.');
-                    return;
-                }
-
-                const allowedTypes = ['video/mp4', 'video/webm', 'video/ogg', 'video/mov'];
-                if (!allowedTypes.includes(videoFile.type)) {
-                    showModal('Veuillez télécharger une vidéo au format MP4, WebM ou OGG.');
-                    return;
-                }
-
-
-                const videoRef = ref(storage, `videos/${videoFile.name}`);
-
-                try {
-                    await uploadBytes(videoRef, videoFile);
-                    const videoUrl = await getDownloadURL(videoRef);
-
-                    await addDoc(collection(db, 'video'), {
-                        title: title,
-                        videoUrl: videoUrl,  // Utilisez videoUrl au lieu de imageUrl
-                        createdAt: serverTimestamp()
-                    });
-
-                    showModal('vidéo publié avec succès!');
-                    document.getElementById('articleForm').reset();
-                } catch (error) {
-                    console.error('Erreur lors de l\'ajout de la vidéo :', error);
-                }
+            articlesSnapshot.forEach(doc => {
+                const video = doc.data();
+                const listItem = document.createElement('div');
+                listItem.className = 'list-group-item d-flex justify-content-between align-items-center';
+                listItem.innerHTML = `
+                    <div>
+                        <strong>${video.title}</strong><br>
+                        ${video.url.substring(0, 100)}...
+                    </div>
+                    <button class="btn btn-warning btn-sm modify-btn" data-id="${doc.id}">Modifier</button>
+                `;
+                articlesList.appendChild(listItem);
             });
-        } else {
-            console.log("Aucun utilisateur authentifié");
+
+            document.querySelectorAll('.modify-btn').forEach(button => {
+                button.addEventListener('click', (e) => {
+                    const articleId = e.target.getAttribute('data-id');
+
+                    // Afficher le modal personnalisé
+                    const confirmationModal = new bootstrap.Modal(document.getElementById('confirmationModal'));
+                    const confirmButton = document.getElementById('confirmActionBtn');
+
+                    // Lorsque l'utilisateur clique sur "Confirmer"
+                    confirmButton.onclick = () => {
+                        // Redirige vers la page de modification
+                        window.location.href = `modify_article.html?id=${articleId}`;
+                        confirmationModal.hide(); // Cacher le modal
+                    };
+
+                    // Ouvrir le modal
+                    confirmationModal.show();
+                });
+            });
         }
+
+        loadArticles();
     </script>
 
-    <script>
-        const hamBurger = document.querySelector(".toggle-btn");
-
-        hamBurger.addEventListener("click", function () {
-            document.querySelector("#sidebar").classList.toggle("expand");
-        });
-    </script>
-
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>

@@ -309,7 +309,7 @@
 
                 // Récupérer l'article actuel pour conserver l'ancienne image si nécessaire
                 const articleDoc = await getDoc(articleRef);
-                const currentImageUrl = articleDoc.exists() ? articleDoc.data().videoUrl : null;
+                const currentVideoUrl = articleDoc.exists() ? articleDoc.data().videoUrl : null;
 
                 let vidoUrl = currentVideoUrl; // Par défaut, on garde l'ancienne image
 

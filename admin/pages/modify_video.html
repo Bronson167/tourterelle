@@ -133,43 +133,32 @@
             </div>
         </aside> -->
 
+
         <div class="main-side p-3">
-            <section class="publier" id="admission">
-                <div class="content-admission">
-                    <h1>Publier une vidéo</h1>
-                    <div class="card actualite-search">
-                        <div class="row g-0">
-                            <div class="col-md-5 col-sm-5 col-12 image-icon">
-                                <img src="../../images/Digital-Library-removebg-preview.png"
-                                    class="img-fluid rounded-start admin-image" alt="...">
-                            </div>
-                            <div class="col-md-7 col-sm-7 col-12">
-                                <div class="card-body">
-                                    <form id="articleForm">
-                                        <input type="text" id="title" placeholder="Titre">
-                                        <label for="video">Video *</label>
-                                        <input placeholder="choisir une vidéo" type="file" id="video" accept="video/*"
-                                            required>
-
-                                        <button type="submit">Publier</button>
-                                    </form>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
+            <h1 class="green">Modifier la vidéo</h1>
+            <form id="modifyForm">
+                <input type="hidden" id="articleId">
+                <div class="mb-3">
+                    <label for="title" class="form-label">Titre</label>
+                    <input type="text" id="title" class="form-control" placeholder="Titre" required>
                 </div>
-            </section>
+
+                <div class="mb-3">
+                    <label for="video">Video *</label>
+                    <input placeholder="choisir une vidéo" type="file" id="video" accept="video/*" required>
+                </div>
+                <button type="submit" class="btn btn-primary w-100">Modifier</button>
+            </form>
         </div>
 
     </div>
+
     <div class="btn-back w-100 pl-3 pr-3 mb-5 d-flex justify-content-center">
         <a href="../admin.html" class="btn btn-primary w-100">Retour</a>
     </div>
 
     <footer>
-        <div class="s_container">
+        <div class=" s_container">
             <div class="content">
                 <div class="box">
                     <h3>Plan du site</h3>
@@ -229,36 +218,48 @@
         </div>
     </footer>
 
-    <!-- Modal -->
-    <div class="modal fade" id="alertModal" tabindex="-1" aria-labelledby="alertModalLabel" aria-hidden="true">
+    <!-- Modale pour succès -->
+    <div class="modal" tabindex="-1" id="successModal">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="alertModalLabel">Notification</h5>
+                    <h5 class="modal-title">Succès</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body" id="modalMessage"></div>
+                <div class="modal-body">
+                    <p id="successMessage">Article modifié avec succès !</p>
+                </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                    <button type="button" class="btn btn-success" data-bs-dismiss="modal">Fermer</button>
                 </div>
             </div>
         </div>
     </div>
 
-    <script>
-        function showModal(message) {
-            const modalMessage = document.getElementById('modalMessage');
-            modalMessage.textContent = message;
-            const modal = new bootstrap.Modal(document.getElementById('alertModal'));
-            modal.show();
-        }
+    <!-- Modale pour erreur -->
+    <div class="modal" tabindex="-1" id="errorModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Erreur</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p id="errorMessage">Veuillez télécharger une image au format JPG, JPEG ou PNG.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Fermer</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
-    </script>
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
-        import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js";
+        import { getFirestore, doc, getDoc, updateDoc } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js";
+
         import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-storage.js";
 
         const firebaseConfig = {
@@ -274,66 +275,85 @@
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
         const storage = getStorage(app);
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const articleId = urlParams.get('id');
+
         import { getAuth } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
         const auth = getAuth();
         const user = auth.currentUser;
         const userId = localStorage.getItem('userId');
 
-        if (userId === 'zjhL3GSxMEaY6aUZxb6DODdeZmP2') {
+        if (userId) {
 
+            async function loadArticle() {
+                const articleRef = doc(db, 'video', articleId);
+                const articleSnap = await getDoc(articleRef);
 
-            document.getElementById('articleForm').addEventListener('submit', async (e) => {
+                if (articleSnap.exists()) {
+                    const article = articleSnap.data();
+                    document.getElementById('articleId').value = articleId;
+                    document.getElementById('title').value = article.title;
+                    document.getElementById('content').value = article.url;
+                } else {
+                    console.log("Aucun document trouvé !");
+                }
+            }
+
+            document.getElementById('modifyForm').addEventListener('submit', async (e) => {
                 e.preventDefault();
 
                 const title = document.getElementById('title').value;
-                const videoFile = document.getElementById('video').files[0];
+                const content = document.getElementById('content').value;
+                const imageFile = document.getElementById('video').files[0];
+                const articleRef = doc(db, 'video', articleId);
+
+                // Récupérer l'article actuel pour conserver l'ancienne image si nécessaire
+                const articleDoc = await getDoc(articleRef);
+                const currentImageUrl = articleDoc.exists() ? articleDoc.data().videoUrl : null;
+
+                let imageUrl = currentImageUrl; // Par défaut, on garde l'ancienne image
+
+                // Si une nouvelle image est sélectionnée, on la télécharge et on met à jour l'URL
+                if (imageFile) {
+                    const allowedTypes = ['video/mp4', 'video/webm', 'video/ogg', 'video/mov'];
+                    if (!allowedTypes.includes(imageFile.type)) {
+                        showModal('Veuillez télécharger une vidéo au format MP4, WebM ou OGG.');
+                        return;
+                    }
+
+                    try {
+                        await uploadBytes(videoRef, videoFile);
+                        const videoUrl = await getDownloadURL(videoRef);
+
+                        await updateDoc(articleRef, {
+                            title: title,
+                            videoUrl: videoUrl,  // Utilisez videoUrl au lieu de imageUrl
+
+                        });
+
+                        showModal('vidéo publié avec succès!');
+                        document.getElementById('articleForm').reset();
+                    } catch (error) {
+                        console.error('Erreur lors de l\'ajout de la vidéo :', error);
+                    }
 
 
-                if (!title || !videoFile) {
-                    showModal('Veuillez remplir tous les champs.');
-                    return;
                 }
 
-                const allowedTypes = ['video/mp4', 'video/webm', 'video/ogg', 'video/mov'];
-                if (!allowedTypes.includes(videoFile.type)) {
-                    showModal('Veuillez télécharger une vidéo au format MP4, WebM ou OGG.');
-                    return;
-                }
 
 
-                const videoRef = ref(storage, `videos/${videoFile.name}`);
-
-                try {
-                    await uploadBytes(videoRef, videoFile);
-                    const videoUrl = await getDownloadURL(videoRef);
-
-                    await addDoc(collection(db, 'video'), {
-                        title: title,
-                        videoUrl: videoUrl,  // Utilisez videoUrl au lieu de imageUrl
-                        createdAt: serverTimestamp()
-                    });
-
-                    showModal('vidéo publié avec succès!');
-                    document.getElementById('articleForm').reset();
-                } catch (error) {
-                    console.error('Erreur lors de l\'ajout de la vidéo :', error);
-                }
+                // Affichage de la modale de succès
+                document.getElementById('successMessage').textContent = 'Article modifié avec succès !';
+                const successModal = new bootstrap.Modal(document.getElementById('successModal'));
+                successModal.show();
             });
+            loadArticle();
         } else {
             console.log("Aucun utilisateur authentifié");
         }
     </script>
-
-    <script>
-        const hamBurger = document.querySelector(".toggle-btn");
-
-        hamBurger.addEventListener("click", function () {
-            document.querySelector("#sidebar").classList.toggle("expand");
-        });
-    </script>
-
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>

@@ -759,6 +759,7 @@ body {
 /* Responsive Code */
 
 @media (max-width: 700px) {
+
     .nav-about {
         margin-left: 0px;
     }
@@ -1299,7 +1300,10 @@ strong {
     }
 
     /*-------Footer-----------*/
-
+    .card-body {
+        flex: 1 1 auto;
+        padding: 1rem 3rem;
+    }
 
     .list-group-item {
         display: flex;
@@ -2230,6 +2234,11 @@ strong {
         display: none;
     }
 
+    .card-body {
+        flex: 1 1 auto;
+        padding: 0rem 0rem;
+    }
+
 }
 
 @media screen and (max-width:360px) {
@@ -2279,9 +2288,4 @@ strong {
 .publication.title {
     padding-left: 15px;
     padding-top: 10px;
-}
-
-.card-body {
-    flex: 1 1 auto;
-    padding: 1rem 3rem;
 }

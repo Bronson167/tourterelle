@@ -259,7 +259,7 @@
             const querySnapshot = await getDocs(collection(db, 'video'));
 
             querySnapshot.forEach((doc) => {
-                const article = doc.data();
+                const video = doc.data();
                 const li = document.createElement('li');
                 li.classList.add('list-group-item');
                 li.innerHTML = `

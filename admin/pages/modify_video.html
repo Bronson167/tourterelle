@@ -311,8 +311,8 @@
                 const articleDoc = await getDoc(articleRef);
                 const currentVideoUrl = articleDoc.exists() ? articleDoc.data().videoUrl : null;
 
-                let vidoUrl = currentVideoUrl; // Par défaut, on garde l'ancienne image
-
+                let videoUrl = currentVideoUrl; // Par défaut, on garde l'ancienne image
+                console.log(videoUrl);
                 // Si une nouvelle image est sélectionnée, on la télécharge et on met à jour l'URL
                 if (videoFile) {
                     const allowedTypes = ['video/mp4', 'video/webm', 'video/ogg', 'video/mov'];
@@ -340,12 +340,6 @@
 
                 }
 
-
-
-                // Affichage de la modale de succès
-                document.getElementById('successMessage').textContent = 'Article modifié avec succès !';
-                const successModal = new bootstrap.Modal(document.getElementById('successModal'));
-                successModal.show();
             });
             loadArticle();
         } else {

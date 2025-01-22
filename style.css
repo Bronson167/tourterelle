@@ -513,6 +513,11 @@ footer .content .box ul li a {
     background: green
 }
 
+.card-body {
+    flex: 1 1 auto;
+    padding: 1rem 3rem;
+}
+
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&display=swap');
 
 * {
@@ -1300,10 +1305,6 @@ strong {
     }
 
     /*-------Footer-----------*/
-    .card-body {
-        flex: 1 1 auto;
-        padding: 1rem 3rem;
-    }
 
     .list-group-item {
         display: flex;
@@ -2236,7 +2237,7 @@ strong {
 
     .card-body {
         flex: 1 1 auto;
-        padding: 0rem 0rem;
+        padding: 1rem 1rem;
     }
 
 }

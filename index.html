@@ -655,6 +655,7 @@
                 // Réinitialiser le formulaire
                 document.getElementById('contactForm').reset();
             } catch (error) {
+                console.log(errror);
                 // Afficher un message d'erreur si l'envoi échoue
                 showModal('Erreur', 'Une erreur est survenue lors de l\'envoi de votre message. Veuillez réessayer plus tard.');
             }
